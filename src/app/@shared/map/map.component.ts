@@ -69,7 +69,7 @@ export class MapComponent implements OnInit, OnChanges {
   getLocations() {
     this._ProjectsService.getStations(this.projectId).subscribe((res) => {
       this.stationsLocations = res.data.items.filter(
-        (item) => item.assetType === 'stationary'
+        (item) => item.assetType === 'stationary',
       );
       this.addMarkers();
       this.loadMap = true;
@@ -96,8 +96,8 @@ export class MapComponent implements OnInit, OnChanges {
         this.addMarker(
           this.stationsLocations[i]['longitude'],
           this.stationsLocations[i]['latitude'],
-          this.stationsLocations[i]['id']
-        )
+          this.stationsLocations[i]['id'],
+        ),
       );
     }
     this.options.layers = this.Layers;
