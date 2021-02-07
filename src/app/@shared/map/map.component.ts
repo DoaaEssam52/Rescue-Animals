@@ -58,7 +58,7 @@ export class MapComponent implements OnInit, OnChanges {
     //   zoom: 12,
     //   center: L.latLng([this.longCenter, this.latCenter]),
     // };
-    this.getCenterLocations(); 
+    this.getCenterLocations();
     // this.getLocations();
   }
 
@@ -80,8 +80,8 @@ export class MapComponent implements OnInit, OnChanges {
     this._ProjectsService.showProject(this.projectId).subscribe((res) => {
       this.latCenter = res.data.latitude;
       this.longCenter = res.data.longitude;
-      console.log(this.latCenter);
-      console.log(this.longCenter);
+      // console.log(this.latCenter);
+      // console.log(this.longCenter);
       this.options = {
         layers: this.Layers,
         zoom: 12,
