@@ -1,7 +1,4 @@
-<div
-  *ngIf="this.projectName != undefined && this.assetName != undefined"
-  class="px-5 mt-2 images"
->
+<div *ngIf="this.projectName != undefined && this.assetName != undefined" class="px-5 mt-2 images">
   <div class="d-flex justify-content-between align-items-center">
     <ngx-breadcrumbs></ngx-breadcrumbs>
     <div class="rightIcons d-flex justify-content-end align-items-center">
@@ -34,32 +31,14 @@
         </button>
       </div>
       <div class="d-flex number ml-5">
-        <nb-icon
-          icon="toggle"
-          [class.active]="this.chosenFilter == 1"
-          pack="svg"
-          (click)="oneChoosed()"
-        ></nb-icon>
-        <nb-icon
-          icon="four"
-          [class.active]="this.chosenFilter == 4"
-          pack="svg"
-          (click)="fourChoosed()"
-        ></nb-icon>
-        <nb-icon
-          icon="nine"
-          [class.active]="this.chosenFilter == 9"
-          pack="svg"
-          (click)="nineChoosed()"
-        ></nb-icon>
+        <nb-icon icon="toggle" [class.active]="this.chosenFilter == 1" pack="svg" (click)="oneChoosed()"></nb-icon>
+        <nb-icon icon="four" [class.active]="this.chosenFilter == 4" pack="svg" (click)="fourChoosed()"></nb-icon>
+        <nb-icon icon="nine" [class.active]="this.chosenFilter == 9" pack="svg" (click)="nineChoosed()"></nb-icon>
       </div>
     </div>
   </div>
 
-  <div
-    *ngIf="this.chosenFilter == 4 && dataLoaded"
-    class="imagesSection row justify-content-center"
-  >
+  <div *ngIf="this.chosenFilter == 4 && dataLoaded" class="imagesSection row justify-content-center">
     <div *ngFor="let image of images" class="col-md-6 col-lg-3 p-2 mb-2">
       <ngx-image-card [imageData]="image"></ngx-image-card>
     </div>
@@ -78,21 +57,14 @@
           <td><img [src]="image.url" />{{ image.name }}</td>
           <td>{{ adjustDate(image.createdAt) }}</td>
           <td>
-            <nb-icon
-              icon="more-horizontal-outline"
-              pack="eva"
-              [nbContextMenu]="imageItems"
-              [nbContextMenuPlacement]="'bottom'"
-            ></nb-icon>
+            <nb-icon icon="more-horizontal-outline" pack="eva" [nbContextMenu]="imageItems"
+              [nbContextMenuPlacement]="'bottom'"></nb-icon>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div
-    *ngIf="this.chosenFilter == 9 && dataLoaded"
-    class="row justify-content-start flex-wrap"
-  >
+  <div *ngIf="this.chosenFilter == 9 && dataLoaded" class="row justify-content-start flex-wrap">
     <div *ngFor="let image of images" class="smallChosen p-2">
       <ngx-image-card [imageData]="image"></ngx-image-card>
     </div>

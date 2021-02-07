@@ -60,4 +60,4 @@ import { POIComponent } from './components/poi/poi.component';
     }),
   ],
 })
-export class MapFeaturesModule {}
+export class MapFeaturesModule { }

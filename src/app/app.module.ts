@@ -10,12 +10,11 @@ import { SharedModule } from './@shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-// import { GalleryModule } from 'ng-gallery';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 
 import {
   NbChatModule,
@@ -30,6 +29,10 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+// import ngx-viewer module
+import { NgxViewerModule } from 'ngx-viewer';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,10 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    NgxViewerModule,
     BrowserAnimationsModule,
-    NgxGalleryModule ,
-    // GalleryModule,
-    NgxGalleryModule,
     HttpClientModule,
     AppRoutingModule,
     LeafletModule,

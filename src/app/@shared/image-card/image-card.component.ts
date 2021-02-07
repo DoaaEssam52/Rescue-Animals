@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./image-card.component.scss'],
 })
 export class ImageCardComponent implements OnInit {
-  @Input()imageData: any;
+  @Input() imageData: any;
   imageitems = [
     // { icon: { icon: "more-horizontal-outline", pack: "eva" } },
     { title: 'Rename' },
