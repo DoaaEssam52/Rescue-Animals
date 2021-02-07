@@ -5,14 +5,14 @@ import {
   EventEmitter,
   Output,
   OnChanges,
-} from '@angular/core';
-import { ProjectsService } from 'app/@app/projects/projects.service';
-import * as L from 'leaflet';
-import { icon, Layer, marker } from 'leaflet';
+} from "@angular/core";
+import { ProjectsService } from "app/@app/projects/projects.service";
+import * as L from "leaflet";
+import { icon, Layer, marker } from "leaflet";
 @Component({
-  selector: 'ngx-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+  selector: "ngx-map",
+  templateUrl: "./map.component.html",
+  styleUrls: ["./map.component.scss"],
 })
 export class MapComponent implements OnInit, OnChanges {
   @Input() projectId: number;
@@ -23,10 +23,10 @@ export class MapComponent implements OnInit, OnChanges {
   stationsLocations: any;
   latCenter: number;
   longCenter: number;
-  mapTile = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+  mapTile = L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
     maxZoom: 23,
     minZoom: 12,
-    subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+    subdomains: ["mt0", "mt1", "mt2", "mt3"],
   });
   map: L.Map;
   Layers: Layer[] = [this.mapTile];
@@ -43,10 +43,10 @@ export class MapComponent implements OnInit, OnChanges {
     <div class='icon'><img src='./assets/images/video.svg' id='video'></div>
     `;
     this.optionsPopup = {
-      maxWidth: '400',
-      width: '200',
+      maxWidth: "400",
+      width: "200",
       closeButton: false,
-      className: 'popupCustom',
+      className: "popupCustom",
     };
   }
   ngOnChanges(changes) {
@@ -69,7 +69,7 @@ export class MapComponent implements OnInit, OnChanges {
   getLocations() {
     this._ProjectsService.getStations(this.projectId).subscribe((res) => {
       this.stationsLocations = res.data.items.filter(
-        (item) => item.assetType === 'stationary',
+        (item) => item.assetType === "stationary"
       );
       this.addMarkers();
       this.loadMap = true;
@@ -85,7 +85,7 @@ export class MapComponent implements OnInit, OnChanges {
       this.options = {
         layers: this.Layers,
         zoom: 12,
-        center: L.latLng([this.longCenter, this.latCenter]),
+        center: L.latLng([this.latCenter, this.longCenter]),
       };
       this.getLocations();
     });
@@ -94,10 +94,10 @@ export class MapComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.stationsLocations.length; i++) {
       this.Layers.push(
         this.addMarker(
-          this.stationsLocations[i]['longitude'],
-          this.stationsLocations[i]['latitude'],
-          this.stationsLocations[i]['id'],
-        ),
+          this.stationsLocations[i]["latitude"],
+          this.stationsLocations[i]["longitude"],
+          this.stationsLocations[i]["id"]
+        )
       );
     }
     this.options.layers = this.Layers;
@@ -107,39 +107,39 @@ export class MapComponent implements OnInit, OnChanges {
       icon: icon({
         iconSize: [25, 41],
         iconAnchor: [13, 41],
-        iconUrl: './assets/images/marker-icon.png',
-        iconRetinaUrl: './assets/images/marker-icon.png',
-        shadowUrl: './assets/images/marker-shadow.png',
+        iconUrl: "./assets/images/marker-icon.png",
+        iconRetinaUrl: "./assets/images/marker-icon.png",
+        shadowUrl: "./assets/images/marker-shadow.png",
       }),
     })
       .bindPopup(this.bodyPopup, this.optionsPopup)
-      .on('popupopen', (e) => {
-        document.querySelector('#doc').addEventListener('click', () => {
-          this.mapAsset.emit({ type: 'documents', id: id });
+      .on("popupopen", (e) => {
+        document.querySelector("#doc").addEventListener("click", () => {
+          this.mapAsset.emit({ type: "documents", id: id });
         });
-        document.querySelector('#img').addEventListener('click', () => {
+        document.querySelector("#img").addEventListener("click", () => {
           e;
-          this.mapAsset.emit({ type: 'images', id: id });
+          this.mapAsset.emit({ type: "images", id: id });
         });
-        document.querySelector('#video').addEventListener('click', () => {
+        document.querySelector("#video").addEventListener("click", () => {
           e;
-          this.mapAsset.emit({ type: 'videos', id: id });
+          this.mapAsset.emit({ type: "videos", id: id });
         });
-        document.querySelector('#analysis').addEventListener('click', () => {
+        document.querySelector("#analysis").addEventListener("click", () => {
           e;
-          this.mapAsset.emit({ type: 'analysis', id: id });
+          this.mapAsset.emit({ type: "analysis", id: id });
         });
-        document.querySelector('#poi').addEventListener('click', () => {
+        document.querySelector("#poi").addEventListener("click", () => {
           e;
-          this.mapAsset.emit({ type: 'POI', id: id });
+          this.mapAsset.emit({ type: "POI", id: id });
         });
-        document.querySelector('#model').addEventListener('click', () => {
+        document.querySelector("#model").addEventListener("click", () => {
           e;
-          this.mapAsset.emit({ type: 'models', id: id });
+          this.mapAsset.emit({ type: "models", id: id });
         });
-        document.querySelector('#cloud').addEventListener('click', () => {
+        document.querySelector("#cloud").addEventListener("click", () => {
           e;
-          this.mapAsset.emit({ type: 'point-cloud', id: id });
+          this.mapAsset.emit({ type: "point-cloud", id: id });
         });
       });
     return newmarker;
