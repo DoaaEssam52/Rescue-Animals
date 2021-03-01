@@ -11,10 +11,10 @@
     justify-content: space-between;
     width: 100%;
     padding: 0 20px;
-    button{
+    button {
       border: none;
     }
-    .navbar-toggler-icon{
+    .navbar-toggler-icon {
       font-size: 2rem;
       color: #ffffff;
     }
@@ -59,17 +59,17 @@
     }
   }
 }
-::ng-deep{
+::ng-deep {
   .nb-theme-default .header-container .navbar-nav {
     margin-right: auto;
-    .nav-link{
-      @media screen and (max-width:769px){
+    .nav-link {
+      @media screen and (max-width: 769px) {
         margin-right: auto;
-        width: 150px ;
-        background-color:#434343;
+        width: 150px;
+        background-color: #434343;
         text-align: center;
         margin-left: 0;
-        border: none ;
+        border: none;
         border: 1px #ffffff solid !important;
       }
     }

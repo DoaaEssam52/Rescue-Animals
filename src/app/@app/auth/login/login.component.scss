@@ -1,22 +1,22 @@
 p.hint {
   font-family: "Almarai", sans-serif;
   font-size: 18px !important;
-  @media screen and (max-width:430px){
+  @media screen and (max-width: 430px) {
     line-height: 1rem;
     font-size: 13px !important;
   }
 }
-img{
+img {
   height: 80vh;
   background-repeat: no-repeat !important;
-  @media screen and (max-width:993px) {
+  @media screen and (max-width: 993px) {
     height: auto;
   }
 }
-.register{
-  @media screen and (max-width:430px) {
+.register {
+  @media screen and (max-width: 430px) {
     display: block !important;
-    button{
+    button {
       margin-top: 15px;
     }
   }

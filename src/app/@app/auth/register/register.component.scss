@@ -57,7 +57,7 @@
         appearance: button;
         outline: none;
       }
-      &:before {
+      &::before {
         content: "\f13a";
         font-family: FontAwesome;
         position: absolute;

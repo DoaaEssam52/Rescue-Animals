@@ -1,85 +1,84 @@
 nb-card {
-    border-color:transparent;
-    position: relative;
-    @media screen and (max-width: 295px) {
-      width: 83%;
-      margin-left: 20px !important;
-    }
-    &:nth-child(2) {
-      width: 80%;
-      nb-card-body {
-        text-align: right;
-      }
-    }
-    nb-card-header {
-      // background-color: #DDCBBE;
-      border-color: transparent;
-      @media screen and (max-width: 295px) {
-      padding: 1rem 0.5rem;
-      }
-      h6 {
-        font-family: "Cairo", sans-serif;
-        font-weight: 900;
-        text-align: center;
-        font-size: 18px;
-        color: #927575;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        @media screen and (max-width: 427px) {
-        font-size: 16px;
-        }
-        
-      }
-    }
+  border-color: transparent;
+  position: relative;
+  @media screen and (max-width: 295px) {
+    width: 83%;
+    margin-left: 20px !important;
+  }
+  &:nth-child(2) {
+    width: 80%;
     nb-card-body {
-      border: 1px solid black;
-      p {
-        font-family: "Almarai", sans-serif;
-        font-size: 17px;
-        line-height: 25px;
-        margin-bottom: 40px;
-      }
-      p.mainCard {
-        // text-overflow: ellipsis;
-        // overflow: hidden;
-        // display: -webkit-box;
-        // -webkit-line-clamp: 2;
-        // -webkit-box-orient: vertical;
-      }
-      [nbButton] {
-        color: #c98585;
-        border: none;
-        background-color: transparent;
-        nb-icon {
-          color: #c98585;
-          font-size: 1rem;
-          margin-right: 2px;
-        }
-        &:hover {
-          background-color: transparent;
-          nb-icon {
-            position: relative;
-            right: 5px;
-            top: 0;
-          }
-        }
-      }
-    }
-    &:hover{
-      top: -5px;
-      right: 5px;
-      box-shadow:  0 4px 7px gray;
-      border-color: black;
-      nb-card-header {
-        // background-color: #DDCBBE;
-                background-color: #DDCBBE;
-                border-color: black;
-                h6{
-                  color: black;
-                }
-        }
+      text-align: right;
     }
   }
+  nb-card-header {
+    // background-color: #DDCBBE;
+    border-color: transparent;
+    @media screen and (max-width: 295px) {
+      padding: 1rem 0.5rem;
+    }
+    h6 {
+      font-family: "Cairo", sans-serif;
+      font-weight: 900;
+      text-align: center;
+      font-size: 18px;
+      color: #927575;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      @media screen and (max-width: 427px) {
+        font-size: 16px;
+      }
+    }
+  }
+  nb-card-body {
+    border: 1px solid black;
+    p {
+      font-family: "Almarai", sans-serif;
+      font-size: 17px;
+      line-height: 25px;
+      margin-bottom: 40px;
+    }
+    p.mainCard {
+      // text-overflow: ellipsis;
+      // overflow: hidden;
+      // display: -webkit-box;
+      // -webkit-line-clamp: 2;
+      // -webkit-box-orient: vertical;
+    }
+    [nbButton] {
+      color: #c98585;
+      border: none;
+      background-color: transparent;
+      nb-icon {
+        color: #c98585;
+        font-size: 1rem;
+        margin-right: 2px;
+      }
+      &:hover {
+        background-color: transparent;
+        nb-icon {
+          position: relative;
+          right: 5px;
+          top: 0;
+        }
+      }
+    }
+  }
+  &:hover {
+    top: -5px;
+    right: 5px;
+    box-shadow: 0 4px 7px gray;
+    border-color: black;
+    nb-card-header {
+      // background-color: #DDCBBE;
+      background-color: #ddcbbe;
+      border-color: black;
+      h6 {
+        color: black;
+      }
+    }
+  }
+}

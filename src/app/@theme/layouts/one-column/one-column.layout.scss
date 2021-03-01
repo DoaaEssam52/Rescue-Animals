@@ -7,18 +7,18 @@
     padding-top: nb-theme(layout-padding-top);
   }
 }
-::ng-deep .layout-container .content .columns{
+::ng-deep .layout-container .content .columns {
   align-items: stretch;
- nb-layout-column{
-   padding: 0 !important;
- }
+  nb-layout-column {
+    padding: 0 !important;
+  }
 }
 ::ng-deep .nb-theme-default {
   direction: rtl;
   .pointer {
     cursor: pointer;
   }
-  .pages{
+  .pages {
     text-align: right;
   }
   .authLayout {
@@ -40,7 +40,7 @@
       color: #323232;
       opacity: 0.6;
       font-size: 13px;
-      padding: 0px 10px;
+      padding: 0 10px;
       min-height: 45px;
       max-width: unset;
       border: 1px solid gray;
@@ -48,7 +48,7 @@
         color: #646464;
       }
     }
-    [nbInput].pass{
+    [nbInput].pass {
       border-right: none;
     }
     [nbButton] {
