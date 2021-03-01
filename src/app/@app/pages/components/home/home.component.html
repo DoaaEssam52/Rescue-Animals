@@ -1,0 +1,210 @@
+<div class="home">
+  <div class="row py-4 mx-0 justify-content-start align-items-center">
+    <div class="col-md-6 px-0">
+      <div
+        class="header_section"
+        [ngStyle]="{
+          background:
+            ' linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) ),url(' +
+            backgroundUrl() +
+            ')'
+        }"
+      ></div>
+    </div>
+    <div class="col-md-5">
+      <h3>
+        الرفق بالحيوان يعني أن يحصل الحيوان علي مستوى جيد من التغذية و الاهتمام
+        و الرعاية الصحية و الأمان و الأهم من ذلك توفير مأوى مناسب للحيوان يشعر
+        فيه بالراحة و عدم الازعاج ، و التعامل معه بشكل انساني.
+      </h3>
+    </div>
+  </div>
+  <div class="text-center welcome">
+    <img class="mb-3" src="assets/images/home.png" alt="" title="Welcome" />
+    <div>
+      <h2><span>♥</span> مرحبا بكم <span>♥</span></h2>
+      <h3>
+        وجودكم هنا يعني حبكم و اهتمامكم بالحيوانات ، لذا نرحب بكم بشدة و نشكركم
+        علي ثقتكم بنا و نتمني مساعدتكم.
+      </h3>
+    </div>
+  </div>
+  <div class="d-flex"></div>
+  <nb-tabset class="pt-4 mt-5" fullWidth>
+    <nb-tab tabTitle="حيوانات تبحث عنها اصحابها">
+      <div class="px-3">
+        <button class="addItem" (click)="open(dialog)">
+          <nb-icon icon="plus-outline" pack="eva"></nb-icon> اضافة منشور
+        </button>
+        <ng-template #dialog let-ref="dialogRef">
+          <nb-card class="addPost">
+            <nb-card-body>
+              <nb-stepper #stepper [disableStepNavigation]="true">
+                <nb-step [stepControl]="firstForm" label="ارفاق الصور">
+                  <h6 class="text-center mb-5">
+                    يرجى اضافة صورة او اكثر للحيوان
+                  </h6>
+                  <form class="step-container">
+                    <p>مسموح حتى 5 صور -</p>
+                    <ngx-image-picker
+                      (emitPhoto)="selectedPhoto($event)"
+                    ></ngx-image-picker>
+                    <div
+                      *ngIf="selectedPhotos.length != 0"
+                      class="d-flex justify-content-center"
+                    >
+                      <div
+                        class="img-container"
+                        *ngFor="let image of selectedPhotos; let i = index"
+                      >
+                        <img [src]="'data:image/png;base64,' + image" />
+                        <nb-icon
+                          icon="close-outline"
+                          pack="eva"
+                          (click)="deleteImg(i)"
+                        ></nb-icon>
+                      </div>
+                    </div>
+                    <div class="closeBtn">
+                      <button (click)="ref.close()">اغلاق</button>
+                    </div>
+                    <div class="d-flex next-prev">
+                      <button
+                        nbStepperNext
+                        [disabled]="selectedPhotos.length == 0"
+                      >
+                        الخطوة التالية
+                      </button>
+                    </div>
+                  </form>
+                </nb-step>
+                <nb-step [stepControl]="secondForm" label="نوع الحيوان">
+                  <h6 class="text-center mb-5">يرجى اختيار نوع الحيوان</h6>
+                  <form class="step-container">
+                    <p class="lorem"></p>
+                    <nb-select
+                      class="mt-4"
+                      [fullWidth]="true"
+                      placeholder="اختر نوع الحيوان"
+                      [(selected)]="selectedAnimalType"
+                      (selectedChange)="chosenAnimalType($event)"
+                    >
+                      <nb-option-group title="انواع الكلاب">
+                        <nb-option
+                          *ngFor="let dog of dogOptions"
+                          [value]="dog.value"
+                        >
+                          {{ dog.name }}
+                        </nb-option>
+                      </nb-option-group>
+
+                      <nb-option-group title="انواع القطط">
+                        <nb-option
+                          *ngFor="let cat of catsOptions"
+                          [value]="cat.value"
+                        >
+                          {{ cat.name }}
+                        </nb-option>
+                      </nb-option-group>
+                    </nb-select>
+                    <div class="closeBtn">
+                      <button (click)="ref.close()">اغلاق</button>
+                    </div>
+                    <div class="d-flex next-prev">
+                      <button
+                        nbStepperNext
+                        [disabled]="selectedAnimalType == -1"
+                      >
+                        الخطوة التالية
+                      </button>
+                      <button nbStepperPrevious>الخطوة السابقة</button>
+                    </div>
+                  </form>
+                </nb-step>
+                <nb-step [stepControl]="thirdForm" label="المكان">
+                  <h6 class="text-center mb-5">
+                    يرجى اختيار المحافظة و المنطقة حيث وجد الحيوان
+                  </h6>
+                  <form class="step-container">
+                    <select
+                      placeholder="اختر المحافظة"
+                      name="city"
+                      [(ngModel)]="selectedCity"
+                      (change)="changeCountry($event)"
+                      class="mb-4"
+                    >
+                      <option value="اختر المحافظة">
+                        اختر المحافظة
+                      </option>
+                      <option *ngFor="let city of this.locations">
+                        {{ city.city }}
+                      </option>
+                    </select>
+                    <select
+                      [disabled]="selectedCity == 'اختر المحافظة'"
+                      placeholder="اختر المنطقة"
+                      name="street"
+                      [(ngModel)]="selectedStreet"
+                    >
+                      <option value="اختر المنطقة" disabled>
+                        اختر المنطقة
+                      </option>
+                      <option *ngFor="let street of this.streets">
+                        {{ street }}
+                      </option>
+                    </select>
+                    <div class="closeBtn">
+                      <button (click)="ref.close()">اغلاق</button>
+                    </div>
+                    <div class="d-flex next-prev">
+                      <button nbStepperNext>الخطوة التالية</button>
+                      <button nbStepperPrevious>الخطوة السابقة</button>
+                    </div>
+                  </form>
+                </nb-step>
+                <nb-step [stepControl]="fourthForm" label="الوصف">
+                  <h6 class="text-center mb-5">
+                    يرجى كتابة الوصف
+                  </h6>
+                  <form class="step-container">
+                    <input type="text" name="description" [(ngModel)]="description">
+                    <div class="closeBtn">
+                      <button (click)="ref.close()">اغلاق</button>
+                    </div>
+                    <div class="d-flex next-prev">
+                      <button nbStepperNext>ارسال المنشور</button>
+                      <button nbStepperPrevious>الخطوة السابقة</button>
+                    </div>
+                  </form>
+                </nb-step>
+              </nb-stepper>
+            </nb-card-body>
+          </nb-card>
+        </ng-template>
+        <ngx-home-post-card
+          [userName]="'دعاء عصام'"
+          [postedDate]="'12 - 12 - 2016'"
+          [animalType]="'x'"
+          [location]="'cairo'"
+          [imgUrl]="'assets/images/dog2.jpg'"
+          [description]="'تفاصيل عن هذا المنشور تفاصيل عن هذا المنشو'"
+        ></ngx-home-post-card>
+      </div>
+    </nb-tab>
+    <nb-tab tabTitle="حيوانات تم العثور عليها">
+      <div class="px-3">
+        <button class="addItem">
+          <nb-icon icon="plus-outline" pack="eva"></nb-icon> اضافة منشور
+        </button>
+        <ngx-home-post-card
+          [userName]="'دعاء عصام'"
+          [postedDate]="'12 - 12 - 2016'"
+          [animalType]="'x'"
+          [location]="'cairo'"
+          [imgUrl]="'assets/images/cat2.jpg'"
+          [description]="'تفاصيل عن هذا المنشور تفاصيل عن هذا المنشو'"
+        ></ngx-home-post-card>
+      </div>
+    </nb-tab>
+  </nb-tabset>
+</div>

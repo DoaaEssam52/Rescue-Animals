@@ -1,55 +1,51 @@
-// import { HttpConnectionService } from './../../../@core/utils/http-connection.service';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { AuthService } from 'app/@core/utils/auth.service';
-
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { AuthenticationService } from "app/@core/utils/service/authentication.service";
 @Component({
-  selector: 'ngx-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "ngx-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  userdata;
-  loginForm: FormGroup;
-
-  constructor (private fb: FormBuilder, private router: Router, private http: HttpClient,
-    private _authService: AuthService,
-  ) {
-    this.loginForm = this.fb.group({
-      username: new FormControl('', [Validators.required, Validators.pattern('[a-z]{3,12}')]),
-      password: new FormControl(null, [Validators.required, Validators.pattern('[1-9]{6,12}')]),
-
-    });
-  }
-
-  ngOnInit(): void {
-  }
-
   showPassword = false;
-
+  model = { userName: "", userPassword: "" };
+  constructor(
+    private router: Router,
+    private _authService: AuthenticationService
+  ) {}
+  ngOnInit(): void {}
   getInputType() {
     if (this.showPassword) {
-      return 'text';
+      return "text";
     }
-    return 'password';
+    return "password";
   }
-
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
-  onSubmit(form) {
-
-    const username = form.value.username;
-    const password = form.value.password;
-
-
-
-    this._authService.login(username, password).subscribe(res => {
-      this.router.navigate(['/projects']);
+  submitForm(form) {
+    if (form.valid) {
+      this.login(this.model);
+    }
+  }
+  login(loginForm) {
+    this._authService.checkRegistered().subscribe((res) => {
+      const data: any = res;
+      const user = data.find((data) => data.userName == loginForm.userName);
+      if (user != undefined) {
+        if (user.userPassword == loginForm.userPassword) {
+          localStorage.setItem("userData", JSON.stringify(user));
+          this.router.navigate(["/pages/home"]);
+        } else {
+          window.alert("wrong password");
+        }
+      } else {
+        window.alert("اسم المستخدم غير مسجل يرجي انشاء حساب");
+        this.routeToRegister();
+      }
     });
-
+  }
+  routeToRegister() {
+    this.router.navigate(["auth/register"]);
   }
 }

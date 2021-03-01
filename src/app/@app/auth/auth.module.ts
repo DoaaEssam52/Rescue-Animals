@@ -1,6 +1,6 @@
 import { SharedModule } from 'app/@shared/shared.module';
 import { LoginComponent } from './login/login.component';
-import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-password-modal.component';
+import { RegisterComponent } from './register/register.component';
 import {
   NbMenuModule,
   NbCardModule,
@@ -11,6 +11,7 @@ import {
   NbInputModule,
   NbFormFieldModule,
   NbLayoutModule,
+  NbStepperModule,
 } from '@nebular/theme';
 import { ThemeModule } from './../../@theme/theme.module';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
-  declarations: [AuthComponent, ForgotPasswordModalComponent, LoginComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -36,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbFormFieldModule,
     SharedModule,
     NbLayoutModule,
+    NbStepperModule,
   ],
 })
 export class AuthModule {}

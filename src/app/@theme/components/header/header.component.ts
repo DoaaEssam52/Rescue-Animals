@@ -1,38 +1,42 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NB_WINDOW } from '@nebular/theme';
-
-import { map, takeUntil } from 'rxjs/operators';
-import { AuthService } from 'app/@core/utils/auth.service';
+import { Component, OnInit } from "@angular/core";
+import {
+  NbMenuService,
+} from "@nebular/theme";
+import { filter ,map} from 'rxjs/operators';
 
 @Component({
-  selector: 'ngx-header',
-  styleUrls: ['./header.component.scss'],
-  templateUrl: './header.component.html',
+  selector: "ngx-header",
+  styleUrls: ["./header.component.scss"],
+  templateUrl: "./header.component.html",
 })
-export class HeaderComponent implements OnInit {
-
-  constructor (
-    private nbMenuService: NbMenuService,
-    @Inject(NB_WINDOW) private window,
-    private _authService: AuthService,
-
-
+export class HeaderComponent implements OnInit{
+  loggedIn:boolean=false;
+  userFullName:any;
+  user: any;
+  userMenu = [{ title: "الصفحة الشخصية" }, { title: "تسجيل الخروج" }];
+  isShown:boolean = false;
+  constructor(
+    private menuService: NbMenuService,
   ) {
+    const user=JSON.parse(localStorage.getItem('userData'));
+    if(user){
+      this.loggedIn=true;
+      this.userFullName=`${user['firstName']} ${user['lastName']}`;
+    }
   }
   ngOnInit() {
-    this.nbMenuService
-      .onItemClick()
-      .pipe(
-        map(({ item: { title } }) => title),
-      ).subscribe((title) => {
-        if (title === 'Logout') {
-          this._authService.logout();
-        }
-      });
+    this.menuService.onItemClick()
+    .pipe(
+      filter(({ tag }) => tag === 'userMenu'),
+      map(({ item: { title } }) => title),
+    )
+    .subscribe(title => {
+      if(title=="الصفحة الشخصية"){
+      }
+      if(title=="تسجيل الخروج"){
+        this.loggedIn=false;
+        localStorage.removeItem('userData');
+      }
+    });
   }
-
-  items = [
-    { title: 'Logout', icon: 'log-out', pack: 'eva' },
-  ];
-
 }

@@ -14,8 +14,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-
+import { RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import {
   NbChatModule,
   NbDatepickerModule,
@@ -24,7 +24,8 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
-  NbLayoutModule,
+  NbTabsetModule,
+  NbStepperModule ,
 } from '@nebular/theme';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -45,7 +46,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    RouterModule,
     LeafletModule,
+    SharedModule,
+    CarouselModule,
+    NbTabsetModule,
+    NbStepperModule ,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -65,7 +71,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       isolate: false,
     }),
-    SharedModule,
   ],
   providers: [
 

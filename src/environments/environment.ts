@@ -9,6 +9,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
+  prefixUrl:'http://localhost:3000',
   production: false,
-  apiUrlPrefix: 'https://mot-dev-backend.s-infinity-d.com/api/',
 };

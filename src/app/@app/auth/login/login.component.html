@@ -1,94 +1,66 @@
-<div class="login-page">
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="cover-content">
-        <h3>S <img src="./assets/images/Vector.png" alt="" /> D</h3>
-        <img
-          src="./assets/images/WhatsApp Image 2021-01-24 at 3.38.50 PM.jpeg"
-          alt=""
-          class="img-fluid coverImg"
+<div class="authLayout row justify-content-end align-items-center">
+  <div class="col-lg-6">
+    <img src="assets/images/auth.jpg" alt="" class="w-100" />
+  </div>
+  <div class="col-lg-6 px-5 py-5">
+    <h6 class="mb-3">تسجيل الدخول</h6>
+    <p class="hint">اذا كنت مشترك من قبل يرجي تسجيل الدخول</p>
+    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" class="w-100">
+      <div class="form-group">
+        <input
+          nbInput
+          class="w-100"
+          name="userName"
+          placeholder="اسم المستخدم"
+          type="text"
+          #userName="ngModel"
+          [(ngModel)]="model.userName"
+          required
+          minlength="4"
+          pattern="[a-zA-Z0-9_]*"
         />
+        <div
+          *ngIf="myForm.submitted && userName.invalid"
+          class="mx-auto w-100 text-right"
+        >
+          <p *ngIf="userName.errors.required">برجاء ادخال اسم المسخدم</p>
+          <p *ngIf="userName.errors.pattern">
+            اسم المستخدم يجب ان يحتوى فقط علي حروف ابجدية او ارقام او _
+          </p>
+          <p *ngIf="userName.errors.minlength">
+            اسم المستخدم يجب ان يحتوى علي الاقل علي 4 حروف
+          </p>
+        </div>
       </div>
-    </div>
-    <div class="col-lg-4 form">
-      <div class="form-content">
-        <h3>
-          welcome to S
-          <img src="./assets/images/Vector.png" alt="" /> D
-        </h3>
-        <nb-icon icon="link" pack="svg"></nb-icon>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
-          <nb-form-field>
-            <nb-icon nbPrefix icon="person" pack="eva" class="icon"></nb-icon>
-            <input
-              type="text"
-              nbInput
-              fullWidth
-              shape="rectangle"
-              placeholder="username"
-              formControlName="username"
-              shape="round"
-            />
-          </nb-form-field>
-          <div
-            *ngIf="
-              loginForm.get('username').hasError('required') &&
-              loginForm.controls.username.touched||loginForm.get('username').hasError('pattern')
-            "
-            class="error-cusomize"
-          >
-            Username is required
-          </div>
-          <nb-form-field>
-            <nb-icon nbPrefix icon="lock" pack="eva" class="icon"></nb-icon>
-            <input
-              [type]="getInputType()"
-              nbInput
-              fullWidth
-              placeholder="Password"
-              formControlName="password"
-              shape="round"
-            />
-            <button
-              nbSuffix
-              nbButton
-              ghost
-              type="button"
-              (click)="toggleShowPassword()"
-            >
-              <nb-icon
-                class="icon"
-                [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
-                pack="eva"
-                [attr.aria-label]="
-                  showPassword ? 'hide password' : 'show password'
-                "
-              >
-              </nb-icon>
-            </button>
-          </nb-form-field>
-          <div
-            *ngIf="
-              loginForm.get('password').hasError('required') &&
-              loginForm.controls.password.touched||loginForm.get('password').hasError('pattern')
-            "
-            class="error-cusomize"
-          >
-            Password is required , minimum 6 digits
-          </div>
-          <button
-            nbButton
-            fullWidth
-            status="primary"
-            type="submit"
-            [disabled]="loginForm.invalid"
-            shape="round"
-            class="cusomize-btn"
-          >
-            Submit
-          </button>
-        </form>
+      <div class="form-group">
+        <nb-form-field>
+          <input
+            nbInput
+            class="w-100"
+            name="password"
+            placeholder="الرقم السرى"
+            type="text"
+            #userPassword="ngModel"
+            [(ngModel)]="model.userPassword"
+            required
+            minlength="6"
+            [type]="getInputType()"
+          />
+        </nb-form-field>
+        <div
+          *ngIf="myForm.submitted && userPassword.invalid"
+          class="mx-auto w-100 text-right"
+        >
+          <p *ngIf="userPassword.errors.required">برجاء ادخال رقمك السرى</p>
+          <p *ngIf="userPassword.errors.minlength">رقم سرى ضعيف</p>
+        </div>
       </div>
-    </div>
+      <div class="d-flex justify-content-between align-items-center register">
+        <div (click)="routeToRegister()" class="pointer">
+          مستخدم جديد؟ انشاء حساب
+        </div>
+        <button type="submit" class="defaultBtn">تسجيل الدخول</button>
+      </div>
+    </form>
   </div>
 </div>

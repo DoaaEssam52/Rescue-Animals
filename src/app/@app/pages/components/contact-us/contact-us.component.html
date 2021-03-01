@@ -1,0 +1,64 @@
+<div class="mt-5 mb-5 d-flex justify-content-center">
+  <img src="assets/images/us2.png" alt="" />
+  <img src="assets/images/contactus.png" alt="" />
+</div>
+<div class="row justify-content-around">
+  <div class="col-md-5">
+    <ul>
+      <li>
+        <div class="d-flex">
+          <nb-icon icon="map-outline" pack="eva"></nb-icon>
+          <h6>العنوان</h6>
+        </div>
+        <p>هذا هو العنوان الخاص بنا</p>
+      </li>
+      <li>
+        <div class="d-flex">
+          <nb-icon icon="phone-outline" pack="eva"></nb-icon>
+          <h6>رقم المحمول</h6>
+        </div>
+        <p>01012949933</p>
+      </li>
+      <li>
+        <div class="d-flex">
+          <nb-icon icon="email-outline" pack="eva"></nb-icon>
+          <h6>البريد الالكترونى</h6>
+        </div>
+        <p>doaa.essam281@gmail.com</p>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <h5><span>♥</span> راسلنا <span>♥</span></h5>
+    <form class="text-center" #myForm="ngForm" (ngSubmit)="suggestService(myForm)">
+      <div class="form-group">
+        <textarea
+          [(ngModel)]="model.contactUs"
+          #contactUs="ngModel"
+          name="contactUs"
+          rows="7"
+          placeholder="شارك معنا.."
+          required
+          minlength="10"
+        ></textarea>
+        <div
+          *ngIf="myForm.submitted && contactUs.invalid"
+          class="mx-auto w-100 text-left"
+        >
+          <p *ngIf="contactUs.errors.required">برجاء كتابة التعليق</p>
+          <p *ngIf="contactUs.errors.minlength">
+            التعليق يجب ان يحتوى علي الاقل علي 10 حروف
+          </p>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="mb-4 defaultBtn"
+        nbPopover="تم الارسال ، شكرا لك."
+        nbPopoverTrigger="noop"
+      >
+        ارسل
+      </button>
+    </form>
+  </div>
+</div>

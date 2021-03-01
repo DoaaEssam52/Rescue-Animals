@@ -1,0 +1,124 @@
+.stepperContainer {
+  position: relative;
+  @media screen and (max-width: 993px) {
+    padding-bottom: 30px;
+  }
+  @media screen and (max-width: 450px) {
+    padding: 15px !important;
+  }
+  .controls {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    @media screen and (max-width: 993px) {
+      bottom: 15px;
+    }
+    button {
+      background-color: transparent;
+      border: none;
+      font-weight: 700;
+      outline: none;
+    }
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  h6 {
+    @media screen and(max-width:768px) {
+      text-align: center;
+      margin-top: 0 !important;
+    }
+    @media screen and(max-width:410px) {
+      font-size: 15px !important;
+      line-height: 15px !important;
+    }
+  }
+  form {
+    @media screen and (max-width: 993px) {
+      padding-bottom: 25px;
+    }
+    .box {
+      position: relative;
+      top: 0%;
+      left: 0%;
+      @media screen and(max-width:350px) {
+      left: 10px;
+      }
+      select {
+        background-color: white;
+        font-size: 16px;
+        height: 45px;
+        color: black;
+        padding: 12px;
+        border: none;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        -webkit-appearance: button;
+        appearance: button;
+        outline: none;
+      }
+      &:before {
+        content: "\f13a";
+        font-family: FontAwesome;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10%;
+        text-align: center;
+        line-height: 42px;
+        color: #323232;
+        font-size: 20px;
+        background-color: white;
+        pointer-events: none;
+      }
+      select option {
+        padding: 30px;
+      }
+    }
+    @media screen and(max-width:768px) {
+      padding: 15px;
+      margin-bottom: 60px;
+    }
+  }
+}
+img {
+  height: 80vh;
+  @media screen and (max-width: 993px) {
+    height: auto;
+  }
+}
+::ng-deep {
+  .header {
+    margin: 20px 26px 30px !important;
+    direction: rtl;
+  }
+  .label span {
+    color: black;
+    font-family: "Cairo";
+  }
+  .nb-theme-default {
+    nb-stepper {
+      .step-content {
+        padding: 0;
+      }
+      .header {
+        .step.completed .label-index {
+          background-color: #c9adad;
+          border-color: #c9adad;
+        }
+        .connector-past {
+          background-color: #c9adad;
+        }
+        .step.selected .label-index {
+          background-color: #c9adad;
+          border-color: #c9adad;
+          color: white;
+        }
+        .label-index {
+          border-radius: 50%;
+          border-color: #ced1d5;
+        }
+      }
+    }
+  }
+}

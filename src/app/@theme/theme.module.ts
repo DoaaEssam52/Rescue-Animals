@@ -1,7 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-HeaderComponent;
 import { CommonModule } from '@angular/common';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {
   NbActionsModule,
   NbLayoutModule,
@@ -14,16 +12,14 @@ import {
   NbSelectModule,
   NbIconModule,
   NbThemeModule,
+  NbCardModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
-
 import {
   FooterComponent,
-  LayoutDirectionSwitcherComponent,
-  SearchInputComponent,
-  SwitcherComponent,
   HeaderComponent,
+  ServiceCardComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -36,15 +32,12 @@ import {
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
-import { DashboardLayoutComponent } from './layouts/s-infintiy-d/dashboard-layout/dashboard-layout.component';
-import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-
+import { RouterModule } from '@angular/router';
 const NB_MODULES = [
   NbLayoutModule,
   NbMenuModule,
@@ -58,18 +51,15 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
+  NbCardModule,
 ];
 const COMPONENTS = [
   HeaderComponent,
-  SwitcherComponent,
-  LayoutDirectionSwitcherComponent,
   FooterComponent,
-  SearchInputComponent,
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  DashboardLayoutComponent,
-  BreadcrumbsComponent,
+  ServiceCardComponent,
 ];
 const PIPES = [
   CapitalizePipe,
@@ -80,9 +70,9 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES, LeafletModule],
+  imports: [CommonModule, ...NB_MODULES,RouterModule,],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES, DashboardLayoutComponent, BreadcrumbsComponent],
+  declarations: [...COMPONENTS, ...PIPES,],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {

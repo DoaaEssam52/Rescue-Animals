@@ -1,0 +1,253 @@
+<div class="authLayout row">
+  <div class="col-lg-6">
+    <img src="assets/images/auth.jpg" alt="" class="w-100" />
+  </div>
+  <div class="col-lg-6 px-5 stepperContainer">
+    <nb-stepper #stepper>
+      <nb-step [stepControl]="firstForm" label="اسم المستخدم">
+        <form
+          [formGroup]="firstForm"
+          (ngSubmit)="formOneSubmit()"
+          class="step-container"
+        >
+          <h6 class="text-center mt-5 mb-5">اسم المستخدم و رقم المحمول</h6>
+          <div class="row mb-3 justify-content-between">
+            <div class="col-md-6 mb-3">
+              <label for="">الاسم الاول</label>
+              <input
+                nbInput
+                class="w-100"
+                name="firstname"
+                placeholder="اكتب الاسم الاول الخاص بك"
+                type="text"
+                formControlName="firstName"
+              />
+              <div
+                *ngIf="namesErrors && firstForm.controls.firstName.invalid"
+                class="text-right"
+              >
+                <p *ngIf="firstForm.controls.firstName.errors.required">
+                  {{ requiredString }} الاسم الاول
+                </p>
+                <p *ngIf="firstForm.controls.firstName.errors.minlength">
+                  الاسم الأول يجب أن يكون علي الأقل 3 حروف
+                </p>
+                <p *ngIf="firstForm.controls.firstName.errors.maxlength">
+                  الاسم الأول يجب أن يكون علي الأكثر 10 حروف
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">الاسم الاخير</label>
+              <input
+                nbInput
+                class="w-100"
+                name="lastName"
+                placeholder="اكتب الاسم الأخير الخاص بك"
+                type="text"
+                formControlName="lastName"
+              />
+              <div
+                *ngIf="namesErrors && firstForm.controls.lastName.invalid"
+                class="text-right"
+              >
+                <p *ngIf="firstForm.controls.lastName.errors.required">
+                  {{ requiredString }} الاسم الاخير
+                </p>
+                <p *ngIf="firstForm.controls.lastName.errors.minlength">
+                  الاسم الأخير يجب أن يكون علي الأقل 3 حروف
+                </p>
+                <p *ngIf="firstForm.controls.lastName.errors.maxlength">
+                  الاسم الأخير يجب أن يكون علي الأكثر 10 حروف
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="userName">اسم المستخدم</label>
+              <input
+                nbInput
+                class="w-100"
+                name="userName"
+                type="text"
+                placeholder="اختر اسم المستخدم الخاص بك"
+                formControlName="userName"
+              />
+              <div
+                *ngIf="namesErrors && firstForm.controls.userName.invalid"
+                class="text-right"
+              >
+                <p
+                  class="text-right"
+                  *ngIf="firstForm.controls.userName.errors.required"
+                >
+                  {{ this.requiredString }} اسم المستخدم
+                </p>
+                <p *ngIf="firstForm.controls.userName.errors.pattern">
+                  اسم المستخدم يجب ان يحتوى فقط علي حروف انجليزية او ارقام او _
+                </p>
+                <p *ngIf="firstForm.controls.userName.errors.minlength">
+                  اسم المستخدم يجب ان يحتوى علي الاقل علي 4 حروف
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">رقم المحمول</label>
+              <input
+                nbInput
+                class="w-100"
+                name="userMobile"
+                placeholder="اكتب رقم المحمول الخاص بك"
+                type="text"
+                formControlName="userMobile"
+              />
+              <div
+                *ngIf="namesErrors && firstForm.controls.userMobile.invalid"
+                class="text-right"
+              >
+                <p *ngIf="firstForm.controls.userMobile.errors.required">
+                  {{ requiredString }} رقم المحمول
+                </p>
+                <p *ngIf="firstForm.controls.userMobile.errors.pattern">
+                  رقم المحمول يجب ان يبدأ ب 01(1-0-2-5) و يجب ان يحتوي علي 11 رقم
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <button nbStepperNext>الخطوة التالية</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="secondForm" label="الرقم السرى">
+        <form
+          [formGroup]="secondForm"
+          (ngSubmit)="formTwoSubmit()"
+          class="step-container"
+        >
+          <h6 class="text-center mt-5 mb-5">البريد الالكتروني و كلمة السر</h6>
+          <div class="input-group mb-3">
+            <label for="">البريد الاكتروني</label>
+            <input
+              nbInput
+              class="w-100"
+              name="userMail"
+              placeholder="ادخل البريد الاكترونى الخاص بك"
+              type="text"
+              formControlName="userMail"
+            />
+            <div
+              *ngIf="passwordErrors && secondForm.controls.userMail.invalid"
+              class="text-right"
+            >
+              <p *ngIf="secondForm.controls.userMail.errors.required">
+                {{ this.requiredString }} بريدك الاكتروني
+              </p>
+              <p *ngIf="secondForm.controls.userMail.errors.email">
+                البريد الالكتروني غير صحيح
+              </p>
+            </div>
+          </div>
+          <label for="">كلمة السر</label>
+          <nb-form-field>
+            <div class="d-flex">
+              <button
+                nbPrefix
+                nbButton
+                type="button"
+                ghost
+                (click)="toggleShowPassword1()"
+              >
+                <nb-icon
+                  [icon]="showPassword1 ? 'eye-outline' : 'eye-off-2-outline'"
+                  pack="eva"
+                  [attr.aria-label]="
+                    showPassword1 ? 'hide password' : 'show password'
+                  "
+                >
+                </nb-icon>
+              </button>
+              <input
+                class="pass"
+                nbInput
+                [type]="getInputType1()"
+                name="password"
+                type="password"
+                placeholder="اختر كلمة السر الخاصة بك"
+                [ngClass]="{
+                  'form-control-danger':
+                    secondForm.invalid &&
+                    (secondForm.dirty || secondForm.touched)
+                }"
+                formControlName="userPassword"
+              />
+            </div>
+          </nb-form-field>
+          <div
+            *ngIf="passwordErrors && secondForm.controls.userPassword.invalid"
+            class="text-right"
+          >
+            <p *ngIf="secondForm.controls.userPassword.errors.required">
+              {{ this.requiredString }} الرقم السرى
+            </p>
+            <p *ngIf="secondForm.controls.userPassword.errors.minlength">
+              (اقل عدد 6)الرقم السرى ضعيف
+            </p>
+          </div>
+          <div class="controls d-flex justify-content-end">
+            <button nbStepperPrevious>الخطوة السابقة</button>
+            <button nbStepperNext>الخطوة التالية</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="thirdForm" label="العنوان">
+        <h6 class="text-center mt-5 mb-5">كتابة العنوان</h6>
+        <form class="step-container">
+          <div class="box">
+            <select
+              placeholder="اختر المحافظة"
+              name="city"
+              [(ngModel)]="selectedCity"
+              (change)="changeCountry($event)"
+              class="w-100 mb-4"
+            >
+              <option value="اختر المحافظة" disabled>اختر المحافظة</option>
+              <option *ngFor="let city of this.locations">
+                {{ city.city }}
+              </option>
+            </select>
+          </div>
+          <div class="box">
+            <select
+              placeholder="اختر المنطقة"
+              name="street"
+              class="w-100"
+              [(ngModel)]="selectedStreet"
+            >
+              <option value="اختر المنطقة" disabled>اختر المنطقة</option>
+              <option *ngFor="let street of this.streets">
+                {{ street }}
+              </option>
+            </select>
+          </div>
+          <div class="controls">
+            <button nbStepperPrevious>الخطوة السابقة</button>
+            <button
+              nbStepperNext
+              [disabled]="this.selectedStreet == 'اختر المنطقة'"
+            >
+              الخطوة التالية
+            </button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="secondForm" [hidden]="true" label="Third step">
+        <div class="step-container text-center">
+          <h6 class="text-center">تم التسجيل ، للتأكيد اضغط علي الزر</h6>
+          <div class="controls">
+            <button (click)="submitForms()">تأكيد</button>
+          </div>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </div>
+</div>

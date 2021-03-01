@@ -1,16 +1,72 @@
-<div class="header-container">
-  <!-- <figure class="logo-container">
-    <img src="./assets/images/Vector.svg" alt="" />
-  </figure> -->
-</div>
-
-<div class="ml-auto header-container">
-  <span>MEEG</span>
-
-  <img
-    [nbContextMenu]="items"
-    class="logout-img"
-    src="./assets/images/Screen Shot 2021-01-22 at 2.12 1 (1).svg"
-    alt=""
-  />
-</div>
+<nav class="header-container navbar navbar-expand-md navbar-light">
+  <a class="navbar-brand" href="#">
+    <img
+      src="assets/images/logo5.png"
+      class="d-inline-block align-top"
+      alt=""
+      loading="lazy"
+    />
+  </a>
+  <button
+    class="navbar-toggler collapsed"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    (click)="isShown = !isShown" [attr.aria-expanded]="isShown"
+    aria-label="Toggle navigation"
+  >
+  <nb-icon class="navbar-toggler-icon" icon="menu-outline" pack="eva"></nb-icon>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav" [ngClass]="{ 'show': isShown }">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/pages/home" routerLinkActive="active"
+          >الرئيسية <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/pages/services"
+          routerLinkActive="active"
+          >خدماتنا</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pages/contact-us"
+        routerLinkActive="active" href="#">تواصل معنا</a>
+      </li>
+      <li class="nav-item" *ngIf="!this.loggedIn">
+        <a
+          class="nav-link"
+          routerLink="/auth/login"
+          routerLinkActive="active"
+          href="#"
+          >دخول</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="!this.loggedIn">
+        <a
+          class="nav-link border rounded"
+          routerLink="/auth/register"
+          routerLinkActive="active"
+          href="#"
+          >انشاء حساب</a
+        >
+      </li>
+      <li class="nav-item" *ngIf="this.loggedIn">
+        <a
+          class="nav-link"
+          [nbContextMenu]="userMenu"
+          nbContextMenuTag="userMenu"
+          routerLink="/auth/register"
+          routerLinkActive="active"
+          href="#"
+          >{{ this.userFullName }}
+          <nb-icon icon="arrow-down-outline" pack="eva"></nb-icon>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

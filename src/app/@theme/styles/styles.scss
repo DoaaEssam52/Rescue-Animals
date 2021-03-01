@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;600;700;900&display=swap');
 // themes - our custom or/and out of the box themes
 @import "themes";
 
@@ -13,7 +14,8 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/grid";
 @import "~leaflet/dist/leaflet.css";
-
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import "~viewerjs/dist/viewer.css";
 // loading progress bar theme
 @import "./pace.theme";

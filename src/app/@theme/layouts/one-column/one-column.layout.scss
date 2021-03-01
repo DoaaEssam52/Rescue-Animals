@@ -1,11 +1,97 @@
-@import '../../styles/themes';
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
+@import "../../styles/themes";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
 
 @include nb-install-component() {
-  ::ng-deep .scrollable {
-    .nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
-      // padding: 0;
+  .menu-sidebar ::ng-deep .scrollable {
+    padding-top: nb-theme(layout-padding-top);
+  }
+}
+::ng-deep .layout-container .content .columns{
+  align-items: stretch;
+ nb-layout-column{
+   padding: 0 !important;
+ }
+}
+::ng-deep .nb-theme-default {
+  direction: rtl;
+  .pointer {
+    cursor: pointer;
+  }
+  .pages{
+    text-align: right;
+  }
+  .authLayout {
+    text-align: right;
+    .nb-form-field-limited-width.nb-form-field-size-medium {
+      max-width: unset;
+      button {
+        border: 1px solid gray;
+        opacity: 0.6;
+        border-left: none;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+    }
+    [nbInput].size-medium:not(.input-full-width) {
+      background-color: #ffffff;
+      color: #323232;
+      opacity: 0.6;
+      font-size: 13px;
+      padding: 0px 10px;
+      min-height: 45px;
+      max-width: unset;
+      border: 1px solid gray;
+      &:placeholder {
+        color: #646464;
+      }
+    }
+    [nbInput].pass{
+      border-right: none;
+    }
+    [nbButton] {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+nb-layout ::ng-deep .layout {
+  background: #ffffff;
+  .authLayout {
+    font-family: "Almarai", sans-serif;
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      color: #646464;
+      line-height: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+    h6 {
+      font-weight: 800;
+      font-family: "Almarai", sans-serif;
+      font-size: 20px;
+      color: #323232;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #323232;
+    }
+    button.defaultBtn {
+      color: #fff;
+      background-color: #323232;
+      border: 2px solid #323232;
+      padding: 9px 12px;
+      min-width: unset;
+      font-size: 13px;
+      font-weight: 600;
+      &:hover {
+        background-color: #ffffff;
+        color: #323232;
+      }
     }
   }
 }

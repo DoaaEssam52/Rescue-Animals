@@ -1,20 +1,31 @@
-import { ForgotPasswordModalComponent } from './forgot-password-modal/forgot-password-modal.component';
-import { LoginComponent } from './login/login.component';
-import { AuthComponent } from './auth.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { AuthComponent } from "./auth.component";
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { AuthGuard } from "app/@core/utils/service/auth.guard";
+import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
 const routes: Routes = [
   {
-    path: '', component: AuthComponent,
-    // canActivateChild:[LoginGuardService],
+    path: "",
+    component: AuthComponent,
+    canActivateChild: [AuthGuard],
     children: [
       {
-        path: '', component: LoginComponent,
-
+        path: "login",
+        component: LoginComponent,
       },
       {
-        path: 'forget', component: ForgotPasswordModalComponent,
+        path: "register",
+        component: RegisterComponent,
+      },
+      {
+        path: "",
+        redirectTo: "login",
+        pathMatch: "full",
+      },
+      {
+        path: "**",
+        component: LoginComponent,
       },
     ],
   },
@@ -24,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

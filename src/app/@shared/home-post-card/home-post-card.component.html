@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>{{ userName }}</h5>
+      <span>{{ postedDate }}</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="d-flex align-items-center justify-content-between ml-auto">
+      <div class="imgSection" (click)="open(dialog)">
+        <img [src]="imgUrl" class="rounded-circle" alt="" />
+        <span>عرض</span>
+      </div>
+      <div class="details">
+        <div class="d-flex">
+          <label for="">فصيلة الحيوان :</label>
+          <p *ngIf="animalType">{{ animalType }}</p>
+        </div>
+        <div class="d-flex">
+          <label for="">المنطقة:</label>
+          <p>{{ location }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="description text-right">
+      <p>
+        {{ description }}
+      </p>
+    </div>
+  </nb-card-body>
+</nb-card>
+<ng-template #dialog let-ref="dialogRef">
+  <nb-card class="dialog">
+    <nb-card-header>
+      <nb-icon icon="close-outline" pack="eva" (click)="ref.close()"></nb-icon>
+    </nb-card-header>
+    <nb-card-body class="d-flex justify-content-center align-items-center"
+      ><img [src]="imgUrl" alt=""
+    /></nb-card-body>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,14 @@
+<div class="text-right d-flex justify-content-end align-items-center">
+  <label>{{ message }}</label>
+  <label for="files" class="btn"
+    >اختر صورة
+    <input
+      id="files"
+      class="d-none"
+      type="file"
+      accept=".jpg,.jpeg,.png"
+      (change)="checkImage($event)"
+    />
+  </label>
+</div>
+<!-- <img [src]="'data:image/png;base64,'+this.stringifiedImg"> -->
