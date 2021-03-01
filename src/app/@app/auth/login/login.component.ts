@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   login(loginForm) {
     this._authService.checkRegistered().subscribe((res) => {
       const data: any = res;
-      const user = data.find((data) => data.userName === loginForm.userName);
+      const user = data.find(( data ) => data.userName === loginForm.userName);
       if (user !== undefined) {
         if (user.userPassword === loginForm.userPassword) {
           localStorage.setItem('userData', JSON.stringify(user));
