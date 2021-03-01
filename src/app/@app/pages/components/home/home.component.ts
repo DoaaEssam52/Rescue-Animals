@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
   changeCountry(e) {
     e;
     this.streets = this.locations.find(
-      (item) => item.city === this.selectedCity
+      (item) => item.city === this.selectedCity,
     ).streets;
     // console.log(this.streets);
   }
