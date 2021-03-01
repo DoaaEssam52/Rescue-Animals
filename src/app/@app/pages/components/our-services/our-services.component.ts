@@ -1,38 +1,38 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { NbPopoverDirective } from "@nebular/theme";
-import { PagesService } from 'app/@core/utils/service/pages.service'; 
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NbPopoverDirective } from '@nebular/theme';
+import { PagesService } from 'app/@core/utils/service/pages.service';
 @Component({
-  selector: "ngx-service-services",
-  templateUrl: "./our-services.component.html",
-  styleUrls: ["./our-services.component.scss"],
+  selector: 'ngx-service-services',
+  templateUrl: './our-services.component.html',
+  styleUrls: ['./our-services.component.scss'],
 })
 export class OurServicesComponent implements OnInit {
   @ViewChild(NbPopoverDirective) popover: NbPopoverDirective;
-  model = { suggestArea: "" };
+  model = { suggestArea: '' };
   servicesData = [
     {
-      title: "المساعدة علي ايجاد الحيوانات المفقودة",
+      title: 'المساعدة علي ايجاد الحيوانات المفقودة',
       description:
-        "نحن نساعد من تاه حيوانه علي محاولة ايجاده يتم ذلك من خلال ان الشخص يكتب مواصفات حيوانه و متي و اين فقده ، كماانه يوفر بياناته للتواصل معه حين ايجاده",
+        'نحن نساعد من تاه حيوانه علي محاولة ايجاده يتم ذلك من خلال ان الشخص يكتب مواصفات حيوانه و متي و اين فقده ، كماانه يوفر بياناته للتواصل معه حين ايجاده',
     },
     {
-      title: "المساعدة علي ايجاد اقرب شلاتر ",
+      title: 'المساعدة علي ايجاد اقرب شلاتر ',
       description:
-        "لأننا نعلم أن ليس كل من يريد مساعدة الحيوان التائه يستطيع ايجاد مكان ليوفره له لحين ايجاد صاحب الحيوان ، فقد فكرنا فى تقديم هذه الخدمة و هى أن نقترح له اقرب شلاتر للحيوانات متوفر بها أماكن",
+        'لأننا نعلم أن ليس كل من يريد مساعدة الحيوان التائه يستطيع ايجاد مكان ليوفره له لحين ايجاد صاحب الحيوان ، فقد فكرنا فى تقديم هذه الخدمة و هى أن نقترح له اقرب شلاتر للحيوانات متوفر بها أماكن',
     },
     {
-      title: "المساعدة علي ايجاد اقرب بيطرين ",
+      title: 'المساعدة علي ايجاد اقرب بيطرين ',
       description:
-        "نحن نساعد من ضل حيوانه علي محاولة ايجاده يتم ذلك من خلال ان الشخص  يكتب مواصفات حيوانه و تفاصيل فقده متي و اين ، كماانه يوفر بياناته للتواصل معه",
+        'نحن نساعد من ضل حيوانه علي محاولة ايجاده يتم ذلك من خلال ان الشخص  يكتب مواصفات حيوانه و تفاصيل فقده متي و اين ، كماانه يوفر بياناته للتواصل معه',
     },
   ];
   constructor(private _pagesService: PagesService) {}
   ngOnInit(): void {}
   backgroundUrl() {
-    return "assets/images/services.png";
+    return 'assets/images/services.png';
   }
   suggestUrl() {
-    return "assets/images/suggest.jpg";
+    return 'assets/images/suggest.jpg';
   }
   suggestService(form) {
     if (form.valid) {

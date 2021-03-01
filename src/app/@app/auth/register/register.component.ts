@@ -101,11 +101,11 @@ export class RegisterComponent implements OnInit {
   formTwoSubmit() {
     if (this.secondForm.invalid) {
       this.passwordErrors = true;
-    } 
+    }
   }
   changeCountry(e) {
     this.streets = this.locations.find(
-      (item) => item.city === this.selectedCity
+      (item) => item.city === this.selectedCity,
     ).streets;
   }
   submitForms() {
@@ -114,7 +114,9 @@ export class RegisterComponent implements OnInit {
     this.registerData.userName = this.firstForm.controls["userName"].value;
     this.registerData.userMobile = this.firstForm.controls["userMobile"].value;
     this.registerData.userMail = this.secondForm.controls["userMail"].value;
-    this.registerData.userPassword = this.secondForm.controls["userPassword"].value;
+    this.registerData.userPassword = this.secondForm.controls[
+      "userPassword"
+    ].value;
     this.registerData.userCity = this.selectedCity;
     this.registerData.userStreet = this.selectedStreet;
     this.register(this.registerData);

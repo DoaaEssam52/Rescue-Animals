@@ -1,30 +1,30 @@
-import { AuthComponent } from "./auth.component";
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from "app/@core/utils/service/auth.guard";
-import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from "./register/register.component";
+import { AuthComponent } from './auth.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'app/@core/utils/service/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: AuthComponent,
     canActivateChild: [AuthGuard],
     children: [
       {
-        path: "login",
+        path: 'login',
         component: LoginComponent,
       },
       {
-        path: "register",
+        path: 'register',
         component: RegisterComponent,
       },
       {
-        path: "",
-        redirectTo: "login",
-        pathMatch: "full",
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
       },
       {
-        path: "**",
+        path: '**',
         component: LoginComponent,
       },
     ],

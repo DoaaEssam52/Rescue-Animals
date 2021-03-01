@@ -3,17 +3,16 @@ import { NbPopoverDirective } from '@nebular/theme';
 import { PagesService } from 'app/@core/utils/service/pages.service';
 
 @Component({
-  selector: 'contact-us',
+  selector: 'ngx-contact-us',
   templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.scss']
+  styleUrls: ['./contact-us.component.scss'],
 })
 export class ContactUsComponent implements OnInit {
   @ViewChild(NbPopoverDirective) popover: NbPopoverDirective;
-  model = { contactUs: "" };
-  constructor(private _pagesService:PagesService) { }
+  model = { contactUs: '' };
+  constructor(private _pagesService: PagesService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   suggestService(form) {
     if (form.valid) {
       this._pagesService.postSuggest(this.model).subscribe((res) => {
