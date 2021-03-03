@@ -1,8 +1,4 @@
-<div class="mt-5 mb-5 d-flex justify-content-center">
-  <img src="assets/images/us2.png" alt="" />
-  <img src="assets/images/contactus.png" alt="" />
-</div>
-<div class="row justify-content-around">
+<div class="mt-4 mb-5 d-flex justify-content-center data">
   <div class="col-md-5">
     <ul>
       <li>
@@ -28,9 +24,21 @@
       </li>
     </ul>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-5 text-center">
+    <img src="assets/images/contactus.png" alt="" />
+  </div>
+</div>
+<div class="mt-5 row justify-content-center">
+  <div class="col-md-5 text-right imgResponsive">
+    <img src="assets/images/us2.png" alt="" />
+  </div>
+  <div class="col-md-6 text-right">
     <h5><span>♥</span> راسلنا <span>♥</span></h5>
-    <form class="text-center" #myForm="ngForm" (ngSubmit)="suggestService(myForm)">
+    <form
+      class="text-center mt-2"
+      #myForm="ngForm"
+      (ngSubmit)="suggestService(myForm)"
+    >
       <div class="form-group">
         <textarea
           [(ngModel)]="model.contactUs"

@@ -1,22 +1,36 @@
-h6 {
-  font-size: 22px;
-  color: #927575;
+.data {
+  h6 {
+    font-size: 22px;
+    color: #927575;
+  }
+  p {
+    text-align: right;
+  }
+  ul {
+    padding: 0;
+    li {
+      list-style: none;
+    }
+  }
+  @media screen and (max-width: 769px) {
+    display: block !important;
+  }
 }
-p {
-  text-align: right;
+.imgResponsive {
+  @media screen and (max-width: 769px) {
+    text-align: center !important;
+  }
 }
 h5 {
   text-align: right;
 }
-ul {
-  padding: 0;
-  li {
-    list-style: none;
-  }
-}
 textarea {
   width: 100%;
   padding: 12px;
+  border: 1px solid black;
+  @media screen and (max-width: 769px) {
+    width: 75%;
+  }
 }
 button.defaultBtn {
   color: #fff;
@@ -40,10 +54,8 @@ h5 {
   font-size: 25px;
   span {
     color: #ddcbbe;
-    // font-size: 30px;
   }
 }
-
 nb-icon {
   margin-left: 10px;
   color: #927575;
