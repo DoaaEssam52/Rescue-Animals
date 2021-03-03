@@ -1,25 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { CountriesService } from "app/@core/utils/service/countries.service";
-import { PagesService } from "app/@core/utils/service/pages.service";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CountriesService } from 'app/@core/utils/service/countries.service';
+import { PagesService } from 'app/@core/utils/service/pages.service';
 @Component({
-  selector: "ngx-add-post",
-  templateUrl: "./add-post.component.html",
-  styleUrls: ["./add-post.component.scss"],
+  selector: 'ngx-add-post',
+  templateUrl: './add-post.component.html',
+  styleUrls: ['./add-post.component.scss'],
 })
 export class AddPostComponent implements OnInit {
   postData = {
-    userName:'',
-    datePosted:new Date(),
+    userName: '',
+    datePosted: new Date(),
     selectedPhotos: [],
-    selectedType: "اختر نوع الحيوان",
-    selectedCategory: "اختر فصيلة الحيوان",
-    selectedCity: "",
-    selectedStreet: "",
-    description: "",
+    selectedType: 'اختر نوع الحيوان',
+    selectedCategory: 'اختر فصيلة الحيوان',
+    selectedCity: '',
+    selectedStreet: '',
+    description: '',
   };
-  postType = "";
+  postType = '';
   animalCategories = [];
   locations;
   streets = [];
@@ -28,36 +28,42 @@ export class AddPostComponent implements OnInit {
   thirdForm: FormGroup;
   description;
   dogOptions = [
-    { name: "البت بول" },
-    { name: "هاسكي" },
-    { name: "البيجل" },
-    { name: "جولدن" },
-    { name: "جيرمن" },
-    { name: "لولو" },
-    { name: "لا اعلم" },
+    { name: 'البت بول' },
+    { name: 'هاسكي' },
+    { name: 'البيجل' },
+    { name: 'جولدن' },
+    { name: 'جيرمن' },
+    { name: 'لولو' },
+    { name: 'لا اعلم' },
   ];
   catsOptions = [
-    { name: "بلدى" },
-    { name: "سيامى" },
-    { name: "شيرازى" },
-    { name: "مون فيس" },
-    { name: "لا اعلم" },
+    { name: 'بلدى' },
+    { name: 'سيامى' },
+    { name: 'شيرازى' },
+    { name: 'مون فيس' },
+    { name: 'لا اعلم' },
   ];
   constructor(
     private _countriesService: CountriesService,
     private activateRoute: ActivatedRoute,
     private route: Router,
-    private _pagesService: PagesService
+    private _pagesService: PagesService,
   ) {
-    this.postData.userName = JSON.parse(localStorage.getItem("userData")).userName;
-    this.postData.selectedCity = JSON.parse(localStorage.getItem("userData")).userCity;
-    this.postData.selectedStreet = JSON.parse(localStorage.getItem("userData")).userStreet;
+    this.postData.userName = JSON.parse(
+      localStorage.getItem('userData')
+    ).userName;
+    this.postData.selectedCity = JSON.parse(
+      localStorage.getItem('userData')
+    ).userCity;
+    this.postData.selectedStreet = JSON.parse(
+      localStorage.getItem('userData')
+    ).userStreet;
     this.activateRoute.params.subscribe((params) => {
-      this.postType = params["type"];
+      this.postType = params['type'];
     });
   }
   selectedPhoto(photo) {
-    if (photo !== "") {
+    if (photo !== '') {
       this.postData.selectedPhotos.push(photo);
     }
   }
@@ -67,7 +73,9 @@ export class AddPostComponent implements OnInit {
   getLocations() {
     this._countriesService.getCitiesStreets().subscribe((res) => {
       this.locations = res;
-      this.streets = this.locations.find((item) => item.city === this.postData.selectedCity).streets;
+      this.streets = this.locations.find(
+        (item) => item.city === this.postData.selectedCity,
+      ).streets;
     });
   }
   deleteImg(id) {
@@ -79,9 +87,9 @@ export class AddPostComponent implements OnInit {
     ).streets;
   }
   changeType(e) {
-    if (this.postData.selectedType === "كلب") {
+    if (this.postData.selectedType === 'كلب') {
       this.animalCategories = this.dogOptions;
-    } else if (this.postData.selectedType === "قطة") {
+    } else if (this.postData.selectedType === 'قطة') {
       this.animalCategories = this.catsOptions;
     }
   }
@@ -89,8 +97,8 @@ export class AddPostComponent implements OnInit {
     this._pagesService
       .publishPost(this.postData, this.postType)
       .subscribe((res) => {
-        window.alert("تم النشر");
-        this.route.navigate(["/pages/home"]);
+        window.alert('تم النشر');
+        this.route.navigate(['/pages/home']);
       });
   }
 }
