@@ -6,17 +6,19 @@ h3 {
   @media screen and (max-width: 810px) {
     font-size: 18px;
     line-height: 30px;
+    padding: 0 30px;
   }
-}
-.header_section {
-  height: 75vh;
-  background-size: 100% 100% !important;
-  background-repeat: no-repeat;
-  width: 100%;
+  @media screen and (max-width: 503px) {
+    font-size: 15px;
+    padding: 0 10px;
+  }
 }
 .welcome {
   img {
     height: 260px;
+    @media screen and (max-width: 400px) {
+      height: 160px;
+    }
   }
   h2 {
     font-size: 25px;
@@ -33,156 +35,63 @@ h3 {
     text-align: center;
     margin: auto;
     @media screen and (max-width: 810px) {
-      font-size: 18px;
+      width: auto;
+      font-size: 15px;
     }
   }
 }
-nb-card.addPost {
-  background-color: #fcfafa;
-  border-radius: 1.5rem;
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 10%;
-  bottom: 10%;
-  font-family: "Cairo" !important;
-  nb-icon {
-    font-size: 1.75rem;
-    cursor: pointer;
-  }
-  nb-card-body {
-    border-radius: 1.5rem;
-    padding-bottom: 0;
-    position: relative;
-    select {
-      width: 100%;
-      direction: rtl;
+.posts {
+  .addItem {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border: 2px dashed transparent;
+    @media screen and (max-width:600px) {
+      margin-bottom: 15px;
     }
-    p,
-    h6 {
-      font-family: "Cairo";
-    }
-    form {
-      text-align: right;
-      // text-align: center;
-    }
-    .img-container {
-      position: relative;
-      img {
-        height: 100px;
-        width: 100px;
-        margin-right: 10px;
-      }
-      nb-icon {
-        position: absolute;
-        top: 5px;
-        right: 18px;
-        font-size: 1.2rem;
-        border-radius: 5px;
-        color: white;
-        background-color: #acaaaa;
-        cursor: pointer;
-      }
-    }
-    .closeBtn {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-    }
-    .next-prev {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-    }
-    button {
-      background-color: transparent;
-      border: none;
-      // margin-top: 20px;
-      font-weight: 700;
-      &:disabled {
-        color: black;
-      }
-      &:hover {
-        outline: none;
-      }
+    &:hover {
+      color: #c9adad;
+      border-color: #c9adad;
+      border-radius: 5px;
+      outline: none;
     }
   }
 }
 ::ng-deep {
-  .header {
-    margin: 20px 26px 30px !important;
-    direction: rtl;
+  .nb-theme-default nb-tabset nb-tab{
+    @media screen and (max-width: 450px) {
+      padding: 1rem 5px;
+    }
   }
   .label span {
     color: black;
     font-family: "Cairo";
   }
-  .nb-theme-default {
-    // nb-option-list .option-list {
-    //   text-align: right;
-    // }
-    nb-option-list .option-list {
-      direction: rtl;
-      text-align: right;
-    }
-    nb-select.size-medium:not(.full-width) {
-      max-width: unset;
-    }
-    nb-select.size-medium button nb-icon {
-      right: unset !important;
-      left: 10px;
-      color: black !important;
-    }
-    nb-select.appearance-outline.status-basic .select-button {
-      text-align: right;
-      font-family: "Cairo";
-      color: black !important;
-      background-color: white;
-      padding-right: 10px !important;
-      font-weight: 600;
-      &:hover {
-        background-color: white;
-      }
-    }
-    nb-stepper {
-      .step-content {
-        padding: 0;
-      }
-      .header {
-        .step.completed .label-index {
-          background-color: #c9adad;
-          border-color: #c9adad;
-        }
-        .connector-past {
-          background-color: #c9adad;
-        }
-        .step.selected .label-index {
-          background-color: #c9adad;
-          border-color: #c9adad;
-          color: white;
-        }
-        .label-index {
-          border-radius: 50%;
-          border-color: #ced1d5;
-        }
-      }
-    }
-  }
   .full-width .tabset {
     justify-content: center !important;
   }
-  .tabset .tab {
-    a {
-      font-family: "Cairo", sans-serif;
-      text-align: center;
-      color: #434343 !important;
-      font-size: 16px;
-      &::before {
-        display: none !important;
+  .tabset {
+    @media screen and (max-width: 500px) {
+      display: block !important;
+      span{
+        width: 100%;
       }
-      &:hover {
-        background-color: #fcfafa !important;
-        border: 3px solid #fcfafa;
+    }
+    .tab {
+      a {
+        font-family: "Cairo", sans-serif;
+        text-align: center;
+        color: #434343 !important;
+        font-size: 16px;
+        &::before {
+          display: none !important;
+        }
+        &:hover {
+          background-color: #fcfafa !important;
+          border: 3px solid #fcfafa;
+        }
       }
     }
   }
@@ -191,19 +100,5 @@ nb-card.addPost {
     border: 3px solid #c9adad;
     border-radius: 10px;
     border-style: dashed;
-  }
-}
-.addItem {
-  margin-top: 15px;
-  margin-bottom: 30px;
-  padding: 10px;
-  background-color: transparent;
-  border: none;
-  border: 2px dashed transparent;
-  &:hover {
-    color: #c9adad;
-    border-color: #c9adad;
-    border-radius: 5px;
-    outline: none;
   }
 }

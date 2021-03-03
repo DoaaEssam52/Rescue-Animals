@@ -1,0 +1,115 @@
+.addPost {
+  direction: ltr;
+  background-color: #fcfafa;
+  height: 100%;
+  position: relative;
+  font-family: "Cairo" !important;
+  select {
+    width: 100%;
+    direction: rtl;
+  }
+  p,
+  h6 {
+    font-family: "Cairo";
+  }
+  form {
+    text-align: right;
+  }
+  .img-container {
+    position: relative;
+    img {
+      height: 100px;
+      width: 100px;
+      margin-right: 10px;
+    }
+    nb-icon {
+      position: absolute;
+      top: 5px;
+      right: 18px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      color: white;
+      background-color: #acaaaa;
+      cursor: pointer;
+    }
+  }
+  .next-prev {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    // margin-top: 20px;
+    font-weight: 700;
+    &:disabled {
+      color: black;
+    }
+    &:hover {
+      outline: none;
+    }
+  }
+  nb-icon {
+    font-size: 1.75rem;
+    cursor: pointer;
+  }
+}
+::ng-deep {
+  .header {
+    margin: 20px 26px 30px !important;
+    direction: rtl;
+  }
+  .label span {
+    color: black;
+    font-family: "Cairo";
+  }
+  .nb-theme-default {
+    nb-option-list .option-list {
+      direction: rtl;
+      text-align: right;
+    }
+    nb-select.size-medium:not(.full-width) {
+      max-width: unset;
+    }
+    nb-select.size-medium button nb-icon {
+      right: unset !important;
+      left: 10px;
+      color: black !important;
+    }
+    nb-select.appearance-outline.status-basic .select-button {
+      text-align: right;
+      font-family: "Cairo";
+      color: black !important;
+      background-color: white;
+      padding-right: 10px !important;
+      font-weight: 600;
+      &:hover {
+        background-color: white;
+      }
+    }
+    nb-stepper {
+      .step-content {
+        padding: 0;
+      }
+      .header {
+        .step.completed .label-index {
+          background-color: #c9adad;
+          border-color: #c9adad;
+        }
+        .connector-past {
+          background-color: #c9adad;
+        }
+        .step.selected .label-index {
+          background-color: #c9adad;
+          border-color: #c9adad;
+          color: white;
+        }
+        .label-index {
+          border-radius: 50%;
+          border-color: #ced1d5;
+        }
+      }
+    }
+  }
+}

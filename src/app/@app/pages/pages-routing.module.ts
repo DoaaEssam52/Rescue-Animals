@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PagesComponent } from './pages.component';
 import { OurServicesComponent } from './components/our-services/our-services.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -19,6 +20,10 @@ const routes: Routes = [{
     {
       path: 'contact-us',
       component: ContactUsComponent,
+    },
+    {
+      path: 'add-post',
+      component: AddPostComponent,
     },
     {
       path: '',
