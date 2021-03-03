@@ -4,9 +4,9 @@ import { CountriesService } from 'app/@core/utils/service/countries.service';
 import { PagesService } from 'app/@core/utils/service/pages.service';
 
 @Component({
-  selector: 'add-post',
+  selector: 'ngx-add-post',
   templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.scss']
+  styleUrls: ['./add-post.component.scss'],
 })
 export class AddPostComponent implements OnInit {
   selectedPhotos: any = [];
