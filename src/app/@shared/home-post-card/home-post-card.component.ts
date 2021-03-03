@@ -12,9 +12,13 @@ export class HomePostCardComponent implements OnInit {
   @Input() location: string;
   @Input() imgUrl: string;
   @Input() description: string;
-  constructor(private dialogService: NbDialogService) {}
+  @Input() cardData:any;
+  constructor(private dialogService: NbDialogService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.cardData);
+  }
 
   open(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog, {

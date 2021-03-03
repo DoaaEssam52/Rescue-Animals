@@ -23,31 +23,23 @@
 <nb-tabset class="pt-4 mt-5 posts" fullWidth>
   <nb-tab tabTitle="حيوانات تبحث عنها اصحابها">
     <div class="px-3">
-      <button class="addItem" (click)="addPost()">
+      <button class="addItem" (click)="addPost('missed')">
         <nb-icon icon="plus-outline" pack="eva"></nb-icon> اضافة منشور
       </button>
       <ngx-home-post-card
-        [userName]="'دعاء عصام'"
-        [postedDate]="'12 - 12 - 2016'"
-        [animalType]="'x'"
-        [location]="'cairo'"
-        [imgUrl]="'assets/images/dog2.jpg'"
-        [description]="'تفاصيل عن هذا المنشور تفاصيل عن هذا المنشو'"
-      ></ngx-home-post-card>
+      *ngFor="let post of missedPosts"
+      [cardData]="post"
+    ></ngx-home-post-card>
     </div>
   </nb-tab>
   <nb-tab tabTitle="حيوانات تم العثور عليها">
     <div class="px-3">
-      <button class="addItem" (click)="addPost()">
+      <button class="addItem" (click)="addPost('found')">
         <nb-icon icon="plus-outline" pack="eva"></nb-icon> اضافة منشور
       </button>
       <ngx-home-post-card
-        [userName]="'دعاء عصام'"
-        [postedDate]="'12 - 12 - 2016'"
-        [animalType]="'x'"
-        [location]="'cairo'"
-        [imgUrl]="'assets/images/cat2.jpg'"
-        [description]="'تفاصيل عن هذا المنشور تفاصيل عن هذا المنشو'"
+        *ngFor="let post of foundPosts"
+        [cardData]="post"
       ></ngx-home-post-card>
     </div>
   </nb-tab>

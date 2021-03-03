@@ -11,4 +11,10 @@ export class PagesService {
   searchPostSuggest(body) {
     return this._httpService.postData('/searchForPosts', body);
   }
+  publishPost(body,type){
+    return this._httpService.postData(`/${type}`, body);
+  }
+  getPosts(type){
+    return this._httpService.getData(`/${type}`);
+  }
 }

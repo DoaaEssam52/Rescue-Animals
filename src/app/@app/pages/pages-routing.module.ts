@@ -5,6 +5,8 @@ import { PagesComponent } from './pages.component';
 import { OurServicesComponent } from './components/our-services/our-services.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
+import { AuthGuard } from 'app/@core/utils/service/auth.guard';
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -22,8 +24,9 @@ const routes: Routes = [{
       component: ContactUsComponent,
     },
     {
-      path: 'add-post',
+      path: 'add-post/:type',
       component: AddPostComponent,
+      canActivate:[AuthGuard],
     },
     {
       path: '',

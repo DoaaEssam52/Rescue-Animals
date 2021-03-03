@@ -1,9 +1,13 @@
 .addPost {
   direction: ltr;
-  background-color: #fcfafa;
-  height: 100%;
+  height: 90%;
   position: relative;
   font-family: "Cairo" !important;
+  textarea{
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    border: none;
+    text-align: right;
+  }
   select {
     width: 100%;
     direction: rtl;
@@ -14,6 +18,8 @@
   }
   form {
     text-align: right;
+    padding: 0 30px;
+    // direction: rtl;
   }
   .img-container {
     position: relative;
@@ -41,7 +47,6 @@
   button {
     background-color: transparent;
     border: none;
-    // margin-top: 20px;
     font-weight: 700;
     &:disabled {
       color: black;
@@ -111,5 +116,42 @@
         }
       }
     }
+  }
+}
+.box {
+  position: relative;
+  top: 0%;
+  left: 0%;
+  @media screen and(max-width:350px) {
+  left: 10px;
+  }
+  select {
+    background-color: white;
+    font-size: 16px;
+    color: black;
+    padding: 0 12px;
+    height: 45px;
+    border: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+  }
+  &::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    text-align: center;
+    line-height: 45px;
+    color: #323232;
+    font-size: 20px;
+    background-color: white;
+    pointer-events: none;
+  }
+  select option {
+    padding: 30px;
   }
 }

@@ -1,4 +1,4 @@
-<div class="addPost">
+<div class="px-3 addPost">
   <nb-stepper #stepper [disableStepNavigation]="true">
     <nb-step [stepControl]="firstForm" label="ارفاق الصور">
       <h6 class="text-center mb-5">يرجى اضافة صورة او اكثر للحيوان</h6>
@@ -8,12 +8,12 @@
           (emitPhoto)="selectedPhoto($event)"
         ></ngx-image-picker>
         <div
-          *ngIf="selectedPhotos.length != 0"
+          *ngIf="postData.selectedPhotos.length != 0"
           class="d-flex justify-content-center"
         >
           <div
             class="img-container"
-            *ngFor="let image of selectedPhotos; let i = index"
+            *ngFor="let image of postData.selectedPhotos; let i = index"
           >
             <img [src]="'data:image/png;base64,' + image" />
             <nb-icon
@@ -24,7 +24,10 @@
           </div>
         </div>
         <div class="d-flex next-prev">
-          <button nbStepperNext [disabled]="selectedPhotos.length == 0">
+          <button
+            nbStepperNext
+            [disabled]="postData.selectedPhotos.length == 0"
+          >
             الخطوة التالية
           </button>
         </div>
@@ -33,28 +36,39 @@
     <nb-step [stepControl]="secondForm" label="نوع الحيوان">
       <h6 class="text-center mb-5">يرجى اختيار نوع الحيوان</h6>
       <form class="step-container">
-        <p class="lorem"></p>
-        <nb-select
-          class="mt-4"
-          [fullWidth]="true"
-          placeholder="اختر نوع الحيوان"
-          [(selected)]="selectedAnimalType"
-          (selectedChange)="chosenAnimalType($event)"
-        >
-          <nb-option-group title="انواع الكلاب">
-            <nb-option *ngFor="let dog of dogOptions" [value]="dog.value">
-              {{ dog.name }}
-            </nb-option>
-          </nb-option-group>
-
-          <nb-option-group title="انواع القطط">
-            <nb-option *ngFor="let cat of catsOptions" [value]="cat.value">
-              {{ cat.name }}
-            </nb-option>
-          </nb-option-group>
-        </nb-select>
+        <div class="box">
+          <select
+            placeholder="اختر نوع الحيوان"
+            name="animalType"
+            [(ngModel)]="postData.selectedType"
+            (change)="changeType($event)"
+            class="mb-4"
+          >
+            <option value="اختر نوع الحيوان" disabled>اختر نوع الحيوان</option>
+            <option value="كلب">كلب</option>
+            <option value="قطة">قطة</option>
+          </select>
+        </div>
+        <div class="box">
+          <select
+            [disabled]="postData.selectedCity == 'اختر نوع الحيوان'"
+            placeholder="اختر فصيلة الحيوان"
+            name="animalCategory"
+            [(ngModel)]="postData.selectedCategory"
+          >
+            <option value="اختر فصيلة الحيوان" disabled>
+              اختر فصيلة الحيوان
+            </option>
+            <option *ngFor="let animal of this.animalCategories">
+              {{ animal.name }}
+            </option>
+          </select>
+        </div>
         <div class="d-flex next-prev">
-          <button nbStepperNext [disabled]="selectedAnimalType == -1">
+          <button
+            nbStepperNext
+            [disabled]="postData.selectedCategory == 'اختر فصيلة الحيوان'"
+          >
             الخطوة التالية
           </button>
           <button nbStepperPrevious>الخطوة السابقة</button>
@@ -65,42 +79,49 @@
       <h6 class="text-center mb-5">
         يرجى اختيار المحافظة و المنطقة حيث وجدت الحيوان
       </h6>
-      <form class="step-container">
-        <select
-          placeholder="اختر المحافظة"
-          name="city"
-          [(ngModel)]="selectedCity"
-          (change)="changeCountry($event)"
-          class="mb-4"
-        >
-          <option value="اختر المحافظة">اختر المحافظة</option>
-          <option *ngFor="let city of this.locations">
-            {{ city.city }}
-          </option>
-        </select>
-        <select
-          [disabled]="selectedCity == 'اختر المحافظة'"
-          placeholder="اختر المنطقة"
-          name="street"
-          [(ngModel)]="selectedStreet"
-        >
-          <option value="اختر المنطقة" disabled>اختر المنطقة</option>
-          <option *ngFor="let street of this.streets">
-            {{ street }}
-          </option>
-        </select>
-        <div class="d-flex next-prev">
-          <button nbStepperNext>الخطوة التالية</button>
-          <button nbStepperPrevious>الخطوة السابقة</button>
+      <form (ngSubmit)="postForm()" class="step-container">
+        <div class="box">
+          <select
+            name="city"
+            [(ngModel)]="postData.selectedCity"
+            (change)="changeCountry($event)"
+            class="mb-4"
+          >
+            <option
+              selected="selected?city.city===postData.selectedCity:false"
+              [value]="city.city"
+              *ngFor="let city of this.locations"
+            >
+              {{ city.city }}
+            </option>
+          </select>
         </div>
-      </form>
-    </nb-step>
-    <nb-step [stepControl]="fourthForm" label="الوصف">
-      <h6 class="text-center mb-5">يرجى كتابة الوصف</h6>
-      <form class="step-container">
-        <input type="text" name="description" [(ngModel)]="description" />
+        <div class="box mb-4">
+          <select
+            placeholder="اختر المنطقة"
+            name="street"
+            [(ngModel)]="postData.selectedStreet"
+          >
+            <option
+              selected="selected?street===postData.selectedStreet"
+              [value]="street"
+              *ngFor="let street of this.streets"
+            >
+              {{ street }}
+            </option>
+          </select>
+        </div>
+        <label for="">اضف اية معلومات تحتاج اضافتها</label>
+        <textarea
+          cols="30"
+          rows="5"
+          class="w-100"
+          type="text"
+          name="description"
+          [(ngModel)]="postData.description"
+        ></textarea>
         <div class="d-flex next-prev">
-          <button nbStepperNext>ارسال المنشور</button>
+          <button nbStepperNext>تأكيد النشر</button>
           <button nbStepperPrevious>الخطوة السابقة</button>
         </div>
       </form>

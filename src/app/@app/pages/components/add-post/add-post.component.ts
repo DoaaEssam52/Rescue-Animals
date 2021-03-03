@@ -1,59 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { CountriesService } from 'app/@core/utils/service/countries.service';
-import { PagesService } from 'app/@core/utils/service/pages.service';
-
+import { Component, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { CountriesService } from "app/@core/utils/service/countries.service";
+import { PagesService } from "app/@core/utils/service/pages.service";
 @Component({
-  selector: 'ngx-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.scss'],
+  selector: "ngx-add-post",
+  templateUrl: "./add-post.component.html",
+  styleUrls: ["./add-post.component.scss"],
 })
 export class AddPostComponent implements OnInit {
-  selectedPhotos: any = [];
-  selectedAnimalType: number = -1;
-  animalCategory: string;
-  animalType: string = '';
+  postData = {
+    userName:'',
+    datePosted:new Date(),
+    selectedPhotos: [],
+    selectedType: "اختر نوع الحيوان",
+    selectedCategory: "اختر فصيلة الحيوان",
+    selectedCity: "",
+    selectedStreet: "",
+    description: "",
+  };
+  postType = "";
+  animalCategories = [];
   locations;
-  streets;
+  streets = [];
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  fourthForm: FormGroup;
   description;
-  selectedCity = 'اختر المحافظة';
-  selectedStreet = 'اختر المنطقة';
   dogOptions = [
-    { value: 1, name: 'البت بول' },
-    { value: 2, name: 'هاسكي' },
-    { value: 3, name: 'البيجل' },
-    { value: 4, name: 'جولدن' },
-    { value: 5, name: 'جيرمن' },
-    { value: 6, name: 'لولو' },
-    { value: 7, name: 'لا اعلم' },
+    { name: "البت بول" },
+    { name: "هاسكي" },
+    { name: "البيجل" },
+    { name: "جولدن" },
+    { name: "جيرمن" },
+    { name: "لولو" },
+    { name: "لا اعلم" },
   ];
   catsOptions = [
-    { value: 8, name: 'بلدى' },
-    { value: 9, name: 'سيامى' },
-    { value: 10, name: 'شيرازى' },
-    { value: 11, name: 'مون فيس' },
-    { value: 12, name: 'لا اعلم' },
+    { name: "بلدى" },
+    { name: "سيامى" },
+    { name: "شيرازى" },
+    { name: "مون فيس" },
+    { name: "لا اعلم" },
   ];
   constructor(
-    private _pagesService: PagesService,
     private _countriesService: CountriesService,
-  ) {}
-  backgroundUrl() {
-    return 'assets/images/header-home.png';
-  }
-  selectedPhoto(e) {
-    if (e !== '') {
-      this.selectedPhotos.push(e);
-    } else {
-    }
-  }
-  suggestService(form) {
-    this._pagesService.searchPostSuggest({ imgSrc: form }).subscribe((res) => {
+    private activateRoute: ActivatedRoute,
+    private route: Router,
+    private _pagesService: PagesService
+  ) {
+    this.postData.userName = JSON.parse(localStorage.getItem("userData")).userName;
+    this.postData.selectedCity = JSON.parse(localStorage.getItem("userData")).userCity;
+    this.postData.selectedStreet = JSON.parse(localStorage.getItem("userData")).userStreet;
+    this.activateRoute.params.subscribe((params) => {
+      this.postType = params["type"];
     });
+  }
+  selectedPhoto(photo) {
+    if (photo !== "") {
+      this.postData.selectedPhotos.push(photo);
+    }
   }
   ngOnInit() {
     this.getLocations();
@@ -61,25 +67,30 @@ export class AddPostComponent implements OnInit {
   getLocations() {
     this._countriesService.getCitiesStreets().subscribe((res) => {
       this.locations = res;
+      this.streets = this.locations.find((item) => item.city === this.postData.selectedCity).streets;
     });
   }
   deleteImg(id) {
-    this.selectedPhotos.splice(id, 1);
-  }
-  chosenAnimalType(e) {
-    if (this.selectedAnimalType < 8) {
-      this.animalCategory = 'dog';
-      this.animalType = this.dogOptions[this.selectedAnimalType - 1].name;
-    } else {
-      this.animalCategory = 'cat';
-      this.animalType = this.catsOptions[this.selectedAnimalType % 8].name;
-    }
+    this.postData.selectedPhotos.splice(id, 1);
   }
   changeCountry(e) {
-    e;
     this.streets = this.locations.find(
-      (item) => item.city === this.selectedCity,
+      (item) => item.city === this.postData.selectedCity
     ).streets;
   }
-
+  changeType(e) {
+    if (this.postData.selectedType === "كلب") {
+      this.animalCategories = this.dogOptions;
+    } else if (this.postData.selectedType === "قطة") {
+      this.animalCategories = this.catsOptions;
+    }
+  }
+  postForm() {
+    this._pagesService
+      .publishPost(this.postData, this.postType)
+      .subscribe((res) => {
+        window.alert("تم النشر");
+        this.route.navigate(["/pages/home"]);
+      });
+  }
 }

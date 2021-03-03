@@ -1,31 +1,38 @@
 <nb-card>
   <nb-card-header>
     <div class="d-flex justify-content-between align-items-center">
-      <h5>{{ userName }}</h5>
-      <span>{{ postedDate }}</span>
+      <h5>{{ cardData["userName"] }}</h5>
+      <span></span>
     </div>
   </nb-card-header>
   <nb-card-body>
     <div class="d-flex align-items-center justify-content-between ml-auto">
       <div class="imgSection" (click)="open(dialog)">
-        <img [src]="imgUrl" class="rounded-circle" alt="" />
+        <img
+          [src]="'data:image/png;base64,' + cardData.selectedPhotos[0]"
+          class="rounded-circle"
+          alt=""
+        />
         <span>عرض</span>
       </div>
       <div class="details">
         <div class="d-flex">
           <label for="">فصيلة الحيوان :</label>
-          <p *ngIf="animalType">{{ animalType }}</p>
+          <p>{{ cardData["selectedType"] }}</p>
         </div>
         <div class="d-flex">
-          <label for="">المنطقة:</label>
-          <p>{{ location }}</p>
+          <label for="">المنطقة: </label>
+          <p>{{ cardData["selectedStreet"] }}</p>
         </div>
       </div>
     </div>
     <div class="description text-right">
       <p>
-        {{ description }}
+        {{ cardData["description"] }}
       </p>
+    </div>
+    <div class="text-center">
+      <button>عرض المنشور</button>
     </div>
   </nb-card-body>
 </nb-card>
@@ -34,8 +41,12 @@
     <nb-card-header>
       <nb-icon icon="close-outline" pack="eva" (click)="ref.close()"></nb-icon>
     </nb-card-header>
-    <nb-card-body class="d-flex justify-content-center align-items-center"
-      ><img [src]="imgUrl" alt=""
-    /></nb-card-body>
+    <nb-card-body class="d-flex justify-content-center align-items-center">
+      <img
+        [src]="'data:image/png;base64,' + cardData.selectedPhotos[0]"
+        class="rounded-circle"
+        alt=""
+      />
+    </nb-card-body>
   </nb-card>
 </ng-template>
