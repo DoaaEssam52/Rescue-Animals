@@ -3,7 +3,7 @@
   height: 90%;
   position: relative;
   font-family: "Cairo" !important;
-  textarea{
+  textarea {
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
     border: none;
     text-align: right;
@@ -123,7 +123,7 @@
   top: 0%;
   left: 0%;
   @media screen and(max-width:350px) {
-  left: 10px;
+    left: 10px;
   }
   select {
     background-color: white;
