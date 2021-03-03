@@ -1,41 +1,41 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
-import { HomeComponent } from "./components/home/home.component";
-import { PagesComponent } from "./pages.component";
-import { OurServicesComponent } from "./components/our-services/our-services.component";
-import { ContactUsComponent } from "./components/contact-us/contact-us.component";
-import { AddPostComponent } from "./components/add-post/add-post.component";
-import { AuthGuard } from "app/@core/utils/service/auth.guard";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { HomeComponent } from './components/home/home.component';
+import { PagesComponent } from './pages.component';
+import { OurServicesComponent } from './components/our-services/our-services.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
+import { AuthGuard } from 'app/@core/utils/service/auth.guard';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: PagesComponent,
     children: [
       {
-        path: "home",
+        path: 'home',
         component: HomeComponent,
       },
       {
-        path: "services",
+        path: 'services',
         component: OurServicesComponent,
       },
       {
-        path: "contact-us",
+        path: 'contact-us',
         component: ContactUsComponent,
       },
       {
-        path: "add-post/:type",
+        path: 'add-post/:type',
         component: AddPostComponent,
         canActivate: [AuthGuard],
       },
       {
-        path: "",
-        redirectTo: "home",
-        pathMatch: "full",
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
       },
       {
-        path: "**",
+        path: '**',
         component: HomeComponent,
       },
     ],

@@ -50,13 +50,13 @@ export class AddPostComponent implements OnInit {
     private _pagesService: PagesService,
   ) {
     this.postData.userName = JSON.parse(
-      localStorage.getItem('userData')
+      localStorage.getItem('userData'),
     ).userName;
     this.postData.selectedCity = JSON.parse(
-      localStorage.getItem('userData')
+      localStorage.getItem('userData'),
     ).userCity;
     this.postData.selectedStreet = JSON.parse(
-      localStorage.getItem('userData')
+      localStorage.getItem('userData'),
     ).userStreet;
     this.activateRoute.params.subscribe((params) => {
       this.postType = params['type'];
@@ -83,7 +83,7 @@ export class AddPostComponent implements OnInit {
   }
   changeCountry(e) {
     this.streets = this.locations.find(
-      (item) => item.city === this.postData.selectedCity
+      (item) => item.city === this.postData.selectedCity,
     ).streets;
   }
   changeType(e) {
