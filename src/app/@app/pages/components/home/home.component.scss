@@ -48,7 +48,7 @@ h3 {
     background-color: transparent;
     border: none;
     border: 2px dashed transparent;
-    @media screen and (max-width:600px) {
+    @media screen and (max-width: 600px) {
       margin-bottom: 15px;
     }
     &:hover {
@@ -60,7 +60,7 @@ h3 {
   }
 }
 ::ng-deep {
-  .nb-theme-default nb-tabset nb-tab{
+  .nb-theme-default nb-tabset nb-tab {
     @media screen and (max-width: 450px) {
       padding: 1rem 5px;
     }
@@ -75,7 +75,7 @@ h3 {
   .tabset {
     @media screen and (max-width: 500px) {
       display: block !important;
-      span{
+      span {
         width: 100%;
       }
     }
