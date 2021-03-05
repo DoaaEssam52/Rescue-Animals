@@ -11,8 +11,8 @@ import { PagesService } from 'app/@core/utils/service/pages.service';
 export class AddPostComponent implements OnInit {
   postData = {
     userName: '',
-    userMail:'',
-    userMobile:'',
+    userMail: '',
+    userMobile: '',
     datePosted: new Date(),
     selectedPhotos: [],
     selectedType: 'اختر نوع الحيوان',
@@ -50,14 +50,14 @@ export class AddPostComponent implements OnInit {
     private _countriesService: CountriesService,
     private activateRoute: ActivatedRoute,
     private route: Router,
-    private _pagesService: PagesService,
+    private _pagesService: PagesService
   ) {
-    this.userData=JSON.parse(localStorage.getItem('userData'));
-    this.postData.userName=this.userData.userName;
-    this.postData.userMail=this.userData.userMail;
-    this.postData.userMobile=this.userData.userMobile;
-    this.postData.selectedCity=this.userData.userCity;
-    this.postData.selectedStreet=this.userData.userStreet;
+    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.postData.userName = this.userData.userName;
+    this.postData.userMail = this.userData.userMail;
+    this.postData.userMobile = this.userData.userMobile;
+    this.postData.selectedCity = this.userData.userCity;
+    this.postData.selectedStreet = this.userData.userStreet;
     this.activateRoute.params.subscribe((params) => {
       this.postType = params['type'];
     });
@@ -74,7 +74,7 @@ export class AddPostComponent implements OnInit {
     this._countriesService.getCitiesStreets().subscribe((res) => {
       this.locations = res;
       this.streets = this.locations.find(
-        (item) => item.city === this.postData.selectedCity,
+        (item) => item.city === this.postData.selectedCity
       ).streets;
     });
   }
@@ -83,7 +83,7 @@ export class AddPostComponent implements OnInit {
   }
   changeCountry(e) {
     this.streets = this.locations.find(
-      (item) => item.city === this.postData.selectedCity,
+      (item) => item.city === this.postData.selectedCity
     ).streets;
   }
   changeType(e) {
