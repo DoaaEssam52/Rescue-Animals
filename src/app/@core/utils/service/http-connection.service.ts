@@ -13,4 +13,7 @@ export class HttpConnectionService {
   postData(url, body) {
     return this._httpClient.post(this.fixedUrl + url, body);
   }
+  deletePost(url,id){
+    return this._httpClient.delete(`${this.fixedUrl + url}/${id}`);
+  }
 }

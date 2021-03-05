@@ -11,6 +11,8 @@ import { PagesService } from 'app/@core/utils/service/pages.service';
 export class AddPostComponent implements OnInit {
   postData = {
     userName: '',
+    userMail:'',
+    userMobile:'',
     datePosted: new Date(),
     selectedPhotos: [],
     selectedType: 'اختر نوع الحيوان',
@@ -23,6 +25,7 @@ export class AddPostComponent implements OnInit {
   animalCategories = [];
   locations;
   streets = [];
+  userData;
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
@@ -49,15 +52,12 @@ export class AddPostComponent implements OnInit {
     private route: Router,
     private _pagesService: PagesService,
   ) {
-    this.postData.userName = JSON.parse(
-      localStorage.getItem('userData'),
-    ).userName;
-    this.postData.selectedCity = JSON.parse(
-      localStorage.getItem('userData'),
-    ).userCity;
-    this.postData.selectedStreet = JSON.parse(
-      localStorage.getItem('userData'),
-    ).userStreet;
+    this.userData=JSON.parse(localStorage.getItem('userData'));
+    this.postData.userName=this.userData.userName;
+    this.postData.userMail=this.userData.userMail;
+    this.postData.userMobile=this.userData.userMobile;
+    this.postData.selectedCity=this.userData.userCity;
+    this.postData.selectedStreet=this.userData.userStreet;
     this.activateRoute.params.subscribe((params) => {
       this.postType = params['type'];
     });

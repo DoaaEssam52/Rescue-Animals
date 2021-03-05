@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card *ngIf="profile">
   <nb-card-header>
     <div class="d-flex justify-content-between align-items-center">
       <h5>{{ cardData["userName"] }}</h5>
@@ -36,17 +36,72 @@
     </div>
   </nb-card-body>
 </nb-card>
+<div (click)="openPost()" *ngIf="profile === false" class="img-container">
+  <img [src]="'data:image/png;base64,' + cardData.selectedPhotos[0]" alt="" />
+  <div class="locations">
+    <h6>{{ cardData.selectedStreet }}</h6>
+    <h6>{{ cardData.selectedCity }}</h6>
+  </div>
+  <div class="btnLocation">
+    <button (click)="open(dialog)">عرض المنشور</button>
+  </div>
+</div>
 <ng-template #dialog let-ref="dialogRef">
   <nb-card class="dialog">
     <nb-card-header>
       <nb-icon icon="close-outline" pack="eva" (click)="ref.close()"></nb-icon>
     </nb-card-header>
-    <nb-card-body class="d-flex justify-content-center align-items-center">
-      <img
-        [src]="'data:image/png;base64,' + cardData.selectedPhotos[0]"
-        class="rounded-circle"
-        alt=""
-      />
+    <nb-card-body>
+      <div class="d-flex justify-content-between align-items-center">
+        <img
+          [src]="'data:image/png;base64,' + cardData.selectedPhotos[0]"
+          class="rounded-circle"
+          alt=""
+        />
+        <div>
+          <div class="text-right">
+            <span
+              >{{ cardData.selectedStreet }} - {{ cardData.selectedCity }}</span
+            >
+            <label for=""> :المكان </label>
+          </div>
+          <div class="text-right">
+            <span>{{ adjustDate(cardData.datePosted) }}</span>
+            <label for=""> :وقت المنشور </label>
+          </div>
+          <div class="text-right">
+            <span>{{ cardData.selectedCategory }}</span>
+            <label for=""> :فصيلة الحيوان </label>
+          </div>
+          <div *ngIf="cardData.description != ''" class="text-right">
+            <span>{{ cardData.description }}</span>
+            <label for=""> :معلومات اخرى </label>
+          </div>
+        </div>
+      </div>
+      <div class="mx-auto text-center mb-4">
+        <button (click)="showUserData()">تواصل مع الناشر</button>
+      </div>
+      <div *ngIf="userDetails">
+        <div class="text-right">
+          <span
+            >{{ cardData.userName }}</span
+          >
+          <label for=""> : الاسم  </label>
+        </div>
+        <div class="text-right">
+          <span
+            >{{ cardData.userMobile }}</span
+          >
+          <label for=""> : رقم المحمول </label>
+        </div>
+        <div class="text-right">
+          <span
+            >{{ cardData.userMail }}</span
+          >
+          <label for=""> : البريد الالكتروني  </label>
+        </div>
+      </div>
     </nb-card-body>
   </nb-card>
 </ng-template>

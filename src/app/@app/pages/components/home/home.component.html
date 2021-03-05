@@ -26,10 +26,15 @@
       <button class="addItem" (click)="addPost('missed')">
         <nb-icon icon="plus-outline" pack="eva"></nb-icon> اضافة منشور
       </button>
-      <ngx-home-post-card
-      *ngFor="let post of missedPosts"
-      [cardData]="post"
-    ></ngx-home-post-card>
+      <div class="row">
+        <ngx-home-post-card
+          *ngFor="let post of missedPosts"
+          [cardData]="post"
+          [profile]="false"
+          class="col-sm-6 col-lg-3 mb-3"
+          (deleteID)="x($event)"
+        ></ngx-home-post-card>
+      </div>
     </div>
   </nb-tab>
   <nb-tab tabTitle="حيوانات تم العثور عليها">
@@ -37,10 +42,14 @@
       <button class="addItem" (click)="addPost('found')">
         <nb-icon icon="plus-outline" pack="eva"></nb-icon> اضافة منشور
       </button>
-      <ngx-home-post-card
-        *ngFor="let post of foundPosts"
-        [cardData]="post"
-      ></ngx-home-post-card>
+      <div class="row">
+        <ngx-home-post-card
+          *ngFor="let post of foundPosts"
+          [cardData]="post"
+          [profile]="false"
+          class="col-sm-6 col-lg-3 mb-3"
+        ></ngx-home-post-card>
+      </div>
     </div>
   </nb-tab>
 </nb-tabset>

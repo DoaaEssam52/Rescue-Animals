@@ -15,11 +15,9 @@ export class HomeComponent implements OnInit {
   getPosts() {
     this._pagesService.getPosts('missed').subscribe((res) => {
       this.missedPosts = res;
-      // console.log(this.missedPosts);
     });
     this._pagesService.getPosts('found').subscribe((res) => {
       this.foundPosts = res;
-      // console.log(this.foundPosts);
     });
   }
   backgroundUrl() {
@@ -27,6 +25,9 @@ export class HomeComponent implements OnInit {
   }
   addPost(e) {
     this.router.navigate(['pages/add-post', e]);
+  }
+  x(e){
+window.alert(e);
   }
   ngOnInit() {}
 }

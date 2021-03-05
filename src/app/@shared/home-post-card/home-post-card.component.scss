@@ -1,6 +1,8 @@
+* {
+  font-family: "Cairo", sans-serif !important;
+}
 nb-card {
   border-radius: 15px;
-  font-family: "Cairo", sans-serif !important;
   &:hover {
     box-shadow: 0 3px 5px 0 rgb(218, 218, 218);
   }
@@ -65,7 +67,6 @@ nb-card {
       p {
         margin: 0;
         text-align: center;
-        font-family: "Cairo", sans-serif !important;
         font-size: 14px;
         font-weight: 600;
       }
@@ -82,12 +83,50 @@ nb-card {
     }
   }
 }
-.dialog {
+.img-container {
+  position: relative;
+  &:hover {
+    transform: scale(1.1, 1.1);
+  }
+  img {
+    height: 250px;
+    width: 100% !important;
+    filter: brightness(60%);
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+  .locations {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    h6 {
+      color: white;
+      font-size: 0.8rem;
+      line-height: 0.9rem;
+      text-align: right;
+    }
+  }
+  .btnLocation {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    button {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: white;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+}
+nb-card.dialog {
   position: absolute !important;
-  left: 35%;
-  right: 35%;
-  top: 20%;
-  bottom: 20%;
+  left: 25%;
+  right: 25%;
+  top: 10%;
+  bottom: 10%;
   @media screen and (max-width: 1100px) {
     left: 20%;
     right: 20%;
@@ -96,18 +135,32 @@ nb-card {
     left: 5%;
     right: 5%;
   }
-  nb-card {
-    nb-card-body {
-      background-color: #fcfafa;
+  nb-card-body {
+    background-color: #fcfafa;
+    img{
+      height: 150px;
+      width: 150px;
     }
-    nb-card-header {
-      background-color: #ddcbbe;
-      nb-icon {
-        font-size: 2rem;
-        &:hover {
-          background-color: #c9adad;
-          color: #fafafa;
-        }
+    label{
+      margin-left: 5px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    span{
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    button{
+      // color: white;
+    }
+  }
+  nb-card-header {
+    background-color: #ddcbbe;
+    nb-icon {
+      font-size: 2rem;
+      &:hover {
+        background-color: #c9adad;
+        color: #fafafa;
       }
     }
   }
