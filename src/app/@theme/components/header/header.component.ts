@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
       .onItemClick()
       .pipe(
         filter(({ tag }) => tag === 'userMenu'),
-        map(({ item: { title } }) => title)
+        map(({ item: { title } }) => title),
       )
       .subscribe((title) => {
         if (title === 'الصفحة الشخصية') {

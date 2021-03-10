@@ -20,7 +20,7 @@ export class HomePostCardComponent {
   userDetails = false;
   constructor(
     private dialogService: NbDialogService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ) {}
   adjustDate(dateString) {
     const dateParsed = dateString.split('T')[0];
