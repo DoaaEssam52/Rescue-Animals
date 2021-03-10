@@ -26,8 +26,5 @@ export class HomeComponent implements OnInit {
   addPost(e) {
     this.router.navigate(['pages/add-post', e]);
   }
-  x(e) {
-    window.alert(e);
-  }
   ngOnInit() {}
 }

@@ -16,6 +16,7 @@ export class HomePostCardComponent {
   @Input() cardData: any;
   @Input() profile: false;
   @Output() deleteID = new EventEmitter<number>();
+  @Output() updatePost = new EventEmitter<any>();
   userDetails = false;
   constructor(
     private dialogService: NbDialogService,
@@ -31,16 +32,16 @@ export class HomePostCardComponent {
       dialogClass: 'dialog',
     });
   }
-  openPost() {
-    // this._pagesService.deletePost('', this.cardData['id']).subscribe((res) => {
-    //   console.log(res);
-    // });
-    this.deleteID.emit(this.cardData['id']);
-  }
   showUserData() {
     this.userDetails = true;
   }
   backgroundUrl() {
     return 'assets/images/dog2.jpg';
+  }
+  deletePost(){
+    this.deleteID.emit(this.cardData['id']);
+  }
+  editPost(){
+    this.updatePost.emit(this.cardData);
   }
 }

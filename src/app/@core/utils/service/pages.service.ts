@@ -18,6 +18,6 @@ export class PagesService {
     return this._httpService.getData(`/${type}`);
   }
   deletePost(type, id) {
-    return this._httpService.deletePost(type, id);
+    return this._httpService.deletePost(`/${type}/${id}`);
   }
 }

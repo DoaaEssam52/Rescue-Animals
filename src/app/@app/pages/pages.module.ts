@@ -19,6 +19,7 @@ import { SharedModule } from 'app/@shared/shared.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,6 @@ import { AddPostComponent } from './components/add-post/add-post.component';
     NbCardModule,
     CarouselModule,
   ],
-  declarations: [PagesComponent, HomeComponent, OurServicesComponent, ContactUsComponent, AddPostComponent],
+  declarations: [PagesComponent, HomeComponent, OurServicesComponent, ContactUsComponent, AddPostComponent, ProfileComponent],
 })
 export class PagesModule {}

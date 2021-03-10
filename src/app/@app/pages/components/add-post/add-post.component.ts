@@ -64,6 +64,7 @@ export class AddPostComponent implements OnInit {
   }
   selectedPhoto(photo) {
     if (photo !== '') {
+      console.log(photo);
       this.postData.selectedPhotos.push(photo);
     }
   }

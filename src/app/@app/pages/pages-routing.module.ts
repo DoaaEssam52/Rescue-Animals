@@ -6,6 +6,7 @@ import { OurServicesComponent } from './components/our-services/our-services.com
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
 import { AuthGuard } from 'app/@core/utils/service/auth.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
       {
         path: '**',

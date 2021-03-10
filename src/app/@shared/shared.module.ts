@@ -13,7 +13,7 @@ import { HomePostCardComponent } from './home-post-card/home-post-card.component
 import { ImagePickerComponent } from './image-picker/image-picker.component';
 ReactiveFormsModule;
 @NgModule({
-  declarations: [HomePostCardComponent, ImagePickerComponent],
+  declarations: [HomePostCardComponent, ImagePickerComponent, ],
   imports: [
     CommonModule,
     NbCardModule,

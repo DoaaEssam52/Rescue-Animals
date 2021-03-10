@@ -1,0 +1,13 @@
+<div class="mt-4 px-4">
+  <h5>منشوراتك</h5>
+  <div class="row">
+    <ngx-home-post-card
+      *ngFor="let post of missedPosts"
+      [cardData]="post"
+      [profile]="true"
+      (deleteID)="deletePost($event)"
+      (updatePost)="editPost($event)"
+      class="col-12"
+    ></ngx-home-post-card>
+  </div>
+</div>
