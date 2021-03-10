@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   user: any;
   userMenu = [{ title: 'الصفحة الشخصية' }, { title: 'تسجيل الخروج' }];
   isShown: boolean = false;
-  constructor(private menuService: NbMenuService,private route:Router,) {
+  constructor(private menuService: NbMenuService, private route: Router) {
     const user = JSON.parse(localStorage.getItem('userData'));
     if (user) {
       this.loggedIn = true;
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
       .onItemClick()
       .pipe(
         filter(({ tag }) => tag === 'userMenu'),
-        map(({ item: { title } }) => title),
+        map(({ item: { title } }) => title)
       )
       .subscribe((title) => {
         if (title === 'الصفحة الشخصية') {

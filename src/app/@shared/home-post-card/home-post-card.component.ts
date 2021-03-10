@@ -20,7 +20,7 @@ export class HomePostCardComponent {
   userDetails = false;
   constructor(
     private dialogService: NbDialogService,
-    private datePipe: DatePipe,
+    private datePipe: DatePipe
   ) {}
   adjustDate(dateString) {
     const dateParsed = dateString.split('T')[0];
@@ -38,10 +38,10 @@ export class HomePostCardComponent {
   backgroundUrl() {
     return 'assets/images/dog2.jpg';
   }
-  deletePost(){
+  deletePost() {
     this.deleteID.emit(this.cardData['id']);
   }
-  editPost(){
+  editPost() {
     this.updatePost.emit(this.cardData);
   }
 }
